@@ -1,6 +1,8 @@
 ---
 import Logo from "../../public/android-chrome-512x512.png"
 
+import { Image } from "astro:assets"
+
 
 interface Props {
 	titleProp: string;
@@ -53,7 +55,7 @@ const title = titleProp + " | AND.FM"
             <nav class="w-full max-w-6xl mx-auto p-8 px-16 flex justify-between items-center flex-row">
                 <div class=""> <!-- Put logos and other things here -->
                     <a href="/" class="">
-                        <img src={Logo} class="w-16"></img>
+                        <Image src={Logo} width="128" height="128" alt="AND.FM Logo" class="w-16 h-16 object-fill" />
                     </a>
                 </div>
                 <div class="text-white flex flex-row gap-5 lg:gap-10 items-center invisible md:visible"> <!-- Links -->
