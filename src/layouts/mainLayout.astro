@@ -40,11 +40,31 @@ const title = titleProp + " | AND.FM"
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://and.fm" />
         <meta property="twitter:title" content={title} />
-        <meta property="twitter:description" content="With Meta Tags you can edit and experiment with your content then preview how your webpage will look on Google, Facebook, Twitter and more!" />
+        <meta property="twitter:description" content={description} />
         <!-- <meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" /> -->
 
 	</head>
-	<body>
-		<slot /> <!-- Enter stuff here -->
+	<body class="min-h-screen flex flex-col justify-between">
+		<div class="h-full w-full">
+            <!-- Header -->
+            <nav class="w-full p-8 px-16 flex justify-between items-center flex-row">
+                <div class=""> <!-- Put logos and other things here -->
+                    <p class="text-3xl text-orange-500 font-extrabold italic">AND.FM</p>
+                </div>
+                <div class="text-white flex flex-row gap-10 mr-10 items-center"> <!-- Links -->
+                    <a rel="prefetch" class="text-zinc-100 font-light" href="/">Home</a>
+                    <a rel="prefetch" class="text-zinc-100 font-light" href="/services">Services</a>
+                    <a rel="prefetch" class="text-zinc-100 font-light" href="/faq">FAQ</a>
+                    <a rel="prefetch" class="text-zinc-100 font-light" href="/faq">About</a>
+                    <a rel="prefetch" class="rounded-xl bg-gradient-to-tr from-red-500 via-orange-500 to-yellow-500 p-4 px-6 text-center text-black font-bold" href="/signup">Sign Up</a>
+                </div>
+            </nav>
+
+            <slot /> <!-- children / nested stuff here -->
+        </div>
+
+        <footer class="w-full h-auto text-zinc-500 flex flex-col justify-center items-center p-8"> <!-- Footer -->
+            <p class="text-sm font-light">@ AND 2023</p>
+        </footer>
     </body>
 </html>
