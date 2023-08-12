@@ -1,0 +1,53 @@
+---
+import MainLayout from "../../layouts/mainLayout.astro";
+import type { Post, Media, Author } from "../../../types/payload-types"
+import Container from "../../components/Container.astro";
+import ImageRenderer from "../../components/ImageRenderer.astro";
+
+const res = await fetch(import.meta.env.PAYLOAD_CMS_URL + "/api/posts?limit=40", 
+    {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }
+)
+
+const postJson = await res.json()
+const posts = postJson.docs as Post[]
+
+---
+
+<MainLayout titleProp="All Posts" description="All blog posts written by the team behind AND">
+    <Container>
+        <h1 class="text-4xl font-bold text-white mb-4">All Posts</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {posts.map((post: Post) => {
+                const author = post.author as Author
+                const banner = post.banner as Media
+                const thumbnail = banner.sizes?.sixteenByNineMedium
+
+                const smallPostTitle = post.title.length > 80 ? post.title.substring(0, 80) + "..." : post.title
+
+                const href = "/blog/" + post.slug
+                
+                return (
+                    <article class="">
+                        <a href={href}>
+                            <ImageRenderer 
+                            class=""
+                            src={thumbnail?.url} 
+                            alt={banner?.alt || ""}
+                            width={thumbnail?.width} 
+                            height={thumbnail?.height} /> 
+                        </a>
+                        <h2 class="mb-4 mt-4 text-xl font-bold text-center leading-tight text-white">
+                            <a href={href}>{smallPostTitle}</a>
+                        </h2>
+                        <p class="mb-4 font-light text-center text-zinc-400">{post.description}</p>
+                    </article>
+                )
+            })}
+        </div>
+    </Container> 
+</MainLayout>
