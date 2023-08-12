@@ -1,0 +1,85 @@
+---
+//@ts-nocheck
+// import escapeHTML from 'escape-html';
+import { Text, leaf } from 'slate';
+import ImageRenderer from './BodyImageRenderer.js';
+
+type DOMElement = {
+    children: any,
+    node: any,
+    value: any,
+    type: string,
+}
+
+type DOMTransformer = (props : {
+    children: string,
+}) => string
+
+const components: {[elem: string]: DOMTransformer} = {
+    h1: (props) => `<h1 class='text-white font-bold text-4xl'>${props.children}</h1>`,
+    h2: (props) => `<h2 class='text-white font-bold text-3xl'>${props.children}</h2>`,
+    h3: (props) => `<h3 class='text-white font-bold text-2xl'>${props.children}</h3>`,
+    h4: (props) => `<h4 class='text-white font-bold text-xl'>${props.children}</h4>`,
+    h5: (props) => `<h5 class='text-white font-bold text-lg'>${props.children}</h5>`,
+    h6: (props) => `<h6 class='text-white font-bold text-base'>${props.children}</h6>`,
+    p: (props) => `<p class='text-zinc-200 text-lg'>${props.children}</p>`,
+    blockquote: (props) => `<blockquote class='text-zinc-200 text-lg'>${props.children}</blockquote>`,
+    pre: (props) => `<pre class='text-zinc-200 text-lg'>${props.children}</pre>`,
+    code: (props) => `<code class='text-zinc-200 text-lg'>${props.children}</code>`,
+    li: (props) =>  `<li class='text-zinc-200 text-lg'>${props.children}</li>`,
+    ol: (props) => `<ol class='text-zinc-200 text-lg'>${props.children}</ol>`,
+    ul: (props) => `<ul class='text-zinc-200 text-lg'>${props.children}</ul>`,
+    //@ts-ignore
+    upload: async (props) => {
+        return await ImageRenderer({...props, scaleHeight: 100, scaleWidth: 800, alt: 'image', mediaType: 'thumbnail'})
+    },
+}
+
+export const leafTypes = {
+    bold: 'font-bold',
+    italic: 'italic',
+    underline: 'underline',
+    strikethrough: 'line-through',
+    code: 'bg-gray-800 text-white font-mono',
+}
+
+const serialize = (children) => children?.map((node, i) => {
+    if (!node) return null;
+
+    if (Text.isText(node)) {
+        // const text = escapeHTML(node.text);
+        const text = node.text;
+
+        const calculatedClass = Object.entries(node)
+        .filter(([key, _]) => leafTypes[key])
+        .map(([key, _]) => leafTypes[key])
+        .join('');
+        
+        if (calculatedClass) return `<span class="${calculatedClass}">${text}</span>`
+        return text;
+    }
+
+    const parent = components[node.type as keyof typeof components]
+    if (!parent) {
+        return `<p>${serialize(node.children)}</p>`
+    }
+
+    const children = serialize(node.children);
+    return parent({ children, node });
+}).join("");
+
+const {content} = Astro.props as Props;
+
+const childElems = await Promise.all(content.map(async (node: DOMElement) => {
+    const parent = components[node.type as keyof typeof components]
+    
+    if (parent) {
+        return parent({ children: serialize(node.children), value: node.value })
+    } else {
+        return components.p({children: serialize(node.children)})
+    }
+}))
+
+---
+<div class={Astro.props.class + ' flex gap-4 flex-col'} {...Astro.props} set:html={childElems}>
+</div>

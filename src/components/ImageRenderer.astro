@@ -1,0 +1,15 @@
+---
+// why do we have BodyImageRenderer and ImageRenderer?
+// one works with the rich text stuff, the other (this one) works with astro components and automatically adds image fade-in
+
+import type { LocalImageProps } from "astro/dist/assets";
+import { Image, ImgAttributes, RemoteImageProps } from "astro:assets"
+
+const props = {
+    ...Astro.props,
+    class: Astro.props.class + " easeload", 
+    onload: "this.style.opacity=1"
+} as any
+
+---
+<Image {...props} />

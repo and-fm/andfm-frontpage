@@ -2,44 +2,53 @@
 
 import { Image } from "astro:assets"
 
-import { RichTextRenderer } from "../../components/RichTextRenderer"
+import RichTextRenderer from "../../components/RichTextRenderer.astro"
+
+import type { Post, Category, User, Media, Author } from "../../../types/payload-types"
 
 import MainLayout from "../../layouts/mainLayout.astro"
+import ImageRenderer from "../../components/ImageRenderer.astro"
 
-// export async function getStaticPaths() {
-//     const postsResponse = await client.queries.postConnection()
-//     const posts = postsResponse.data.postConnection.edges?.map((edge) => edge?.node)
+export async function getStaticPaths() {
+    const res = await fetch(import.meta.env.PAYLOAD_CMS_URL + "/api/posts?depth=2", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+    const posts = await res.json()
 
-//     return posts?.map((post) => {
-//         return {
-//             params: {
-//                 slug: (post?.slug || post?._sys.filename) as string
-//             },
-//             props: post as Post
-//         }
-//     })
-// }
+    return posts.docs.map((post: Post) => {
+        return {
+            params: {
+                slug: post.slug
+            },
+            props: post as Post
+        }
+    })
+}
 
-const post = Astro.props // as Post
+const post = Astro.props as Post
+const author = post.author as Author
 
-const dateCreated = new Date(post.dateCreated)
-const dateUpdated = post.dateUpdated ? new Date(post.dateUpdated) : null
+const dateCreated = post.publishedDate ? new Date(post.publishedDate) : new Date(post.createdAt)
+const dateUpdated = null
 
 // formatted date string
 const dateCreatedString = dateCreated.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
 
 ---
 <MainLayout titleProp={post.title} description={post.description}>
-	<div class="flex flex-col gap-2 justify-center items-start md:w-2/3 w-full lg:w-1/2  md:mx-auto">
+	<div class="flex flex-col gap-2 justify-center items-start md:w-2/3 w-full lg:w-1/2 mt-10 md:mx-auto">
         <header class="flex flex-col justify-start items-start gap-8">
-            {post.banner ? <Image width={1920} height={1080} class="w-full mx-auto rounded-xl" src={post.banner || ""} alt={post.author.authorName} /> : null}
+            {post.banner ? <ImageRenderer width={1920} height={1080} class="w-full mx-auto rounded-xl" src={(post.banner as Media).url!} alt={author.name} /> : null}
 
             <address class="flex items-center not-italic">
                 <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
-                    {post.author.authorImage ? <Image width={400} height={400} class="mr-4 w-16 h-16 rounded-full" src={post.author.authorImage || ""} alt={post.author.authorName} /> : null}
+                    {author.profilePicture ? <ImageRenderer width={400} height={400} class="mr-4 w-16 h-16 rounded-full" src={(author.profilePicture as Media).url!} alt={author.name} /> : null}
                     <div>
-                        <a href="#" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">{post.author.authorName}</a>
-                        <p class="text-base font-light text-gray-500 dark:text-gray-400">{post.author.authorShortBio}</p>
+                        <a href="#" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">{author.name}</a>
+                        <p class="text-base font-light text-gray-500 dark:text-gray-400">{author.shortBio}</p>
                         <p class="text-base font-light text-gray-500 dark:text-gray-400">
                             <time datetime={`${dateCreated.getUTCDate()}-${dateCreated.getUTCMonth()}-${dateCreated.getUTCFullYear()}`} title={dateCreatedString}>{`${dateCreatedString}`}</time>
                         </p>
@@ -50,9 +59,7 @@ const dateCreatedString = dateCreated.toLocaleDateString('en-US', { year: 'numer
         <h1 class="text-3xl mt-10 font-extrabold text-gray-900 lg:text-4xl dark:text-white">{post.title}</h1>
         
         <!-- <div class="text-and-primary text-2xl font-bold italic text-center">{post.description}</div> -->
-        <div class="mx-auto mt-4 mb-10 flex flex-col gap-3">
-            <!-- <RichTextRenderer content={post.body} /> -->
-        </div>
+        <RichTextRenderer class="mt-5" content={post.content} />
 	</div>
 
 <!-- 

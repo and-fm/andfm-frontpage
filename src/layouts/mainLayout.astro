@@ -46,6 +46,16 @@ const title = titleProp + " | AND.FM"
         <meta property="twitter:description" content={description} />
         <!-- <meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" /> -->
 
+        <style is:global>
+            .easeload { /* For image loading functionalities */
+                opacity: 0;
+                -webkit-transition: opacity 2s ease; 
+                -moz-transition: opacity 2s ease; 
+                -ms-transition: opacity 2s ease; 
+                -o-transition: opacity 2s ease; 
+            }
+        </style>        
+
 	</head>
 	<body class="min-h-screen flex flex-col justify-between">
 		<div class="h-full w-full">
