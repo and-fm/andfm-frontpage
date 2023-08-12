@@ -39,9 +39,9 @@ const dateCreatedString = dateCreated.toLocaleDateString('en-US', { year: 'numer
 
 ---
 <MainLayout titleProp={post.title} description={post.description}>
-	<div class="flex flex-col gap-2 justify-center items-start md:w-2/3 w-full lg:w-1/2 mt-10 md:mx-auto">
+	<div class="flex flex-col gap-2 justify-center items-start md:w-3/4 w-full lg:w-2/3 2xl:w-1/2 mt-10 md:mx-auto">
         <header class="flex flex-col justify-start items-start gap-8">
-            {post.banner ? <ImageRenderer width={1920} height={1080} class="w-full mx-auto rounded-xl" src={(post.banner as Media).url!} alt={author.name} /> : null}
+            {post.banner ? <ImageRenderer width={1920} height={1080} class="w-full mx-auto rounded-xl" src={(post.banner as Media).sizes?.sixteenByNineLarge?.url} alt={author.name} /> : null}
 
             <address class="flex items-center not-italic">
                 <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">

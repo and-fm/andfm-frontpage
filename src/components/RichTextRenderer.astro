@@ -1,19 +1,21 @@
 ---
-//@ts-nocheck
 // import escapeHTML from 'escape-html';
-import { Text, leaf } from 'slate';
+import { Text, leaf, Element } from 'slate';
 import ImageRenderer from './BodyImageRenderer.js';
 
-type DOMElement = {
+// extends Element
+export type DOMElement = {
     children: any,
     node: any,
     value: any,
     type: string,
 }
 
-type DOMTransformer = (props : {
-    children: string,
-}) => string
+export type DOMTransformer = (props : {
+    children: DOMElement[] | string,
+    node?: DOMElement,
+    value?: DOMElement,
+}) => string | Promise<string | null>;
 
 const components: {[elem: string]: DOMTransformer} = {
     h1: (props) => `<h1 class='text-white font-bold text-4xl'>${props.children}</h1>`,
@@ -29,9 +31,8 @@ const components: {[elem: string]: DOMTransformer} = {
     li: (props) =>  `<li class='text-zinc-200 text-lg'>${props.children}</li>`,
     ol: (props) => `<ol class='text-zinc-200 text-lg'>${props.children}</ol>`,
     ul: (props) => `<ul class='text-zinc-200 text-lg'>${props.children}</ul>`,
-    //@ts-ignore
-    upload: async (props) => {
-        return await ImageRenderer({...props, scaleHeight: 100, scaleWidth: 800, alt: 'image', mediaType: 'thumbnail'})
+    upload: async ({node}) => {
+        return await ImageRenderer({media: node?.value, alt: node?.value, mediaType: "thumbnail"})
     },
 }
 
@@ -43,16 +44,18 @@ export const leafTypes = {
     code: 'bg-gray-800 text-white font-mono',
 }
 
-const serialize = (children) => children?.map((node, i) => {
+const serialize = (children: DOMElement[]): string => children?.map((node: DOMElement) => {
     if (!node) return null;
 
     if (Text.isText(node)) {
         // const text = escapeHTML(node.text);
         const text = node.text;
 
-        const calculatedClass = Object.entries(node)
-        .filter(([key, _]) => leafTypes[key])
-        .map(([key, _]) => leafTypes[key])
+        const calculatedClass = Object.keys(node)
+        //@ts-expect-error
+        .filter((key) => leafTypes[key])
+        //@ts-expect-error
+        .map((key) => leafTypes[key])
         .join('');
         
         if (calculatedClass) return `<span class="${calculatedClass}">${text}</span>`
@@ -65,16 +68,16 @@ const serialize = (children) => children?.map((node, i) => {
     }
 
     const children = serialize(node.children);
-    return parent({ children, node });
+    return parent({ children, value: node.value as DOMElement, node });
 }).join("");
 
-const {content} = Astro.props as Props;
+const {content} = Astro.props;
 
 const childElems = await Promise.all(content.map(async (node: DOMElement) => {
     const parent = components[node.type as keyof typeof components]
     
     if (parent) {
-        return parent({ children: serialize(node.children), value: node.value })
+        return parent({ children: serialize(node.children), value: node.value as DOMElement, node })
     } else {
         return components.p({children: serialize(node.children)})
     }

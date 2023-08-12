@@ -1,17 +1,27 @@
 import { getImage } from "astro:assets"
 
 import type { Media } from "../../types/payload-types"
+import type { DOMElement } from "./RichTextRenderer.astro";
 
 enum MediaType {
-    Thumbnail = "thumbnail",
-    Medium = "sixteenByNineMedium",
-    Large = "sixteenByNineLarge",
+    thumbnail,
+    sixteenByNineMedium,
+    sixteenByNineLarge,
 }
 
-export default async (props: {scaleWidth: number, scaleHeight: number, value: Media, mediaType:  MediaType }) => {
+type MediaTypes = keyof typeof MediaType // "thumbnail" | "sixteenByNineMedium" | "sixteenByNineLarge"
 
-    const {value, scaleWidth, scaleHeight, mediaType} = props;
-    const sizes: Media["sizes"] = value.sizes
+interface Props {
+    media: Media, 
+    scaleWidth?: number, 
+    scaleHeight?: number, 
+    mediaType: MediaTypes,
+    alt: string,
+}
+
+export default async ({media, mediaType, alt}: Props) => {
+
+    const sizes: Media["sizes"] = media?.sizes
 
     if (!sizes) return null
 
@@ -21,12 +31,12 @@ export default async (props: {scaleWidth: number, scaleHeight: number, value: Me
         src: sizeVariant?.url as string,
         width: sizeVariant?.width,
         height: sizeVariant?.height,
-        alt: "thingy",
+        alt: alt,
     })
 
     const { src, attributes} = optimised
 
-    const {width, height, alt} = attributes
+    const {width, height} = attributes
 
     return `<img onload="this.style.opacity=1" class="easeload w-full rounded-xl" src="${src}" width="${width}" height="${height}" alt="${alt}" />`
 }
