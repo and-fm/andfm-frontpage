@@ -16,7 +16,9 @@ export interface Config {
     authors: Author;
     bannerMedia: BannerMedia;
   };
-  globals: {};
+  globals: {
+    faq: Faq;
+  };
 }
 export interface Category {
   id: string;
@@ -141,4 +143,14 @@ export interface BannerMedia {
       filename?: string;
     };
   };
+}
+export interface Faq {
+  id: string;
+  questions: {
+    question: string;
+    answer: string;
+    id?: string;
+  }[];
+  updatedAt?: string;
+  createdAt?: string;
 }

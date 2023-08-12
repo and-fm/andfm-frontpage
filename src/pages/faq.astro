@@ -1,0 +1,34 @@
+---
+import MainLayout from "../layouts/mainLayout.astro";
+import type { Faq } from "../../types/payload-types"
+import Container from "../components/Container.astro";
+
+
+const faqData = await fetch(import.meta.env.PAYLOAD_CMS_URL + "/api/globals/faq", {
+    method: "GET",
+    headers: {
+        "Content-Type": "application/json",
+    },
+})
+
+const { questions } = await faqData.json() as Faq
+
+
+
+---
+<MainLayout titleProp="Frequently Asked Questions" description="Here are some frequently asked questions answered by the AND team!">
+    <Container>
+        <div class="flex flex-row">
+            {
+            questions.map((question) => {
+                return (
+                    <div class="mb-8">
+                        <h2 class="text-2xl text-white font-bold mb-2">{question.question}</h2>
+                        <p class="text-zinc-300">{question.answer}</p>
+                        </div>
+                    )
+                })
+            }
+        </div>
+    </Container>
+</MainLayout>
