@@ -6,7 +6,9 @@ const cmsUrl = import.meta.env.PAYLOAD_CMS_URL;
         <div class="mx-auto max-w-screen-md sm:text-center">
             <h2 class="mb-4 text-3xl font-extrabold tracking-tight sm:text-4xl text-white">Waiting List</h2>
             <p class="mx-auto mb-8 max-w-2xl font-light text-zinc-500 sm:text-xl dark:text-zinc-400">AND distribution is currently only available to a limited selection of artists. Sign up to be notified about our public launch!</p>
-            <p id="subscriptionErrorText" class="mx-auto mb-4 max-w-2xl font-light text-orange-500"></p>
+            <div class="text-white">
+                <p id="subscriptionErrorText" class="mx-auto mb-4 max-w-2xl font-light text-orange-500"></p>
+            </div>
 
             <form id="mailingListForm" action="">
                 <div class="items-center mx-auto space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
@@ -51,6 +53,10 @@ form?.addEventListener('submit', async (e) => {
         name: (document.getElementById('name'))?.value,
         email: (document.getElementById('email'))?.value,
     }
+
+    const formData = new FormData();
+    formData.append('name', data.name);
+    formData.append('email', data.email);
     
     form.classList.add('hidden');
     errorTextElement.innerText = 'Please wait...';
@@ -59,19 +65,21 @@ form?.addEventListener('submit', async (e) => {
         const response = await fetch(cmsUrl + '/api/subscribers', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                "Allow-Access-Control-Origin": "*"
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+                // "Access-Control-Allow-Origin": "*",
             },
-            body: data
+            body: formData
         });
 
-        if (response.status === 200) {
+        if (response.status.toString().startsWith('2')) {
             errorTextElement.innerText = 'Thank you for subscribing!';
+            errorTextElement.classList.remove('text-orange-500');
         } else {
             throw new Error(response)
         }
     } catch (e) {
         form.classList.remove('hidden');
+        console.log(e)
         errorTextElement.innerText = 'There was an error subscribing you. Please try again.';
     } 
 });
