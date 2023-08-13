@@ -18,16 +18,17 @@ const { questions } = await faqData.json() as Faq
 ---
 <MainLayout titleProp="Frequently Asked Questions" description="Here are some frequently asked questions answered by the AND team!">
     <Container>
-        <div class="flex flex-row">
+        <h1 class="text-4xl font-extrabold text-white mb-4">Frequently Asked Questions</h1>
+        <div class="flex flex-col gap-2">
             {
-            questions.map((question) => {
+            questions?.map((question) => {
                 return (
                     <div class="mb-8">
-                        <h2 class="text-2xl text-white font-bold mb-2">{question.question}</h2>
-                        <p class="text-zinc-300">{question.answer}</p>
+                        <h2 class="text-xl text-white font-semibold mb-2">{question.question}</h2>
+                        <p class="text-zinc-400">{question.answer}</p>
                         </div>
                     )
-                })
+                }) || <p class="text-zinc-400">No questions found</p>
             }
         </div>
     </Container>
