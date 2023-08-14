@@ -73,6 +73,9 @@ const serialize = (children: DOMElement[]): string => children?.map((node: DOMEl
 
 const {content} = Astro.props;
 
+/**
+ * Elements that will be directly appended onto the rendered div
+ */
 const childElems = await Promise.all(content.map(async (node: DOMElement) => {
     const parent = components[node.type as keyof typeof components]
     

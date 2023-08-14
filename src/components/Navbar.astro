@@ -1,0 +1,53 @@
+---
+import Logo from "../../public/android-chrome-512x512.png"
+
+import { Image } from "astro:assets"
+
+---
+
+<style is:inline>
+    .hideToggle {display: none;}
+</style>
+
+<nav class="w-full max-w-6xl mx-auto p-8 md:px-16 flex justify-between items-center flex-row">
+    <div class="w-fit"> <!-- Put logos and other things here -->
+        <a href="/" class="w-fit">
+            <Image src={Logo} width="128" height="128" alt="AND.FM Logo" loading="eager" class="w-12 md:w-16 h-12 md:h-16 object-contain" />
+        </a>
+    </div>
+    <div class="text-white justify-end flex-row gap-5 lg:gap-10 items-center hidden md:flex"> <!-- Links -->
+        <a rel="prefetch" class="text-zinc-100 font-light" href="/">Home</a>
+        <a rel="prefetch" class="text-zinc-100 font-light" href="/blog">Blog</a> 
+        <a rel="prefetch" class="text-zinc-100 font-light" href="/faq">FAQ</a>
+        <a class="rounded-xl bg-gradient-to-tr from-red-300 via-orange-300 to-yellow-300 p-4 px-6 text-center text-black font-bold" href="https://anxmusic.revelator.pro/en/sign-in">Login</a>
+    </div>
+    <div class="md:hidden block z-50">
+        <button id="hamburgerToggleButton">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+            </svg>
+        </button>
+    </div>
+</nav>
+<div id="mobileMenu" class="hideToggle absolute flex flex-col gap-4 p-4 w-full h-full backdrop-blur-sm top-0 bg-black/70 z-20 md:hidden">
+    <div class="w-fit mb-12 p-4"> <!-- Put logos and other things here -->
+        <a href="/" class="w-fit">
+            <Image src={Logo} width="128" height="128" alt="AND.FM Logo" loading="eager" class="w-12 h-12 object-contain" />
+        </a>
+    </div>
+    <div class="text-white flex flex-col items-end gap-2">
+        <a rel="prefetch" class="text-zinc-100 text-4xl font-bold" href="/">Home</a>
+        <a rel="prefetch" class="text-zinc-100 text-4xl font-bold" href="/blog">Blog</a> 
+        <a rel="prefetch" class="text-zinc-100 text-4xl font-bold" href="/faq">FAQ</a>
+        <a class="rounded-xl mt-12 bg-gradient-to-tr w-fit from-red-300 via-orange-300 to-yellow-300 p-6 px-8 text-center text-black font-bold text-2xl" href="https://anxmusic.revelator.pro/en/sign-in">Login</a>
+    </div>
+</div>
+
+<script>
+    // basic code to add toggle visibility to hamburger menu
+    const mobileMenu = document?.getElementById("mobileMenu")
+    document.getElementById("hamburgerToggleButton")?.addEventListener("click", () => {
+        mobileMenu?.classList.toggle("hideToggle")
+    })
+</script>
+

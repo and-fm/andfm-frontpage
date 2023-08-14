@@ -38,12 +38,8 @@ const cmsUrl = import.meta.env.PAYLOAD_CMS_URL;
     </div>
 </section>
 
-
-
 <script define:vars={{cmsUrl: cmsUrl}}>
 const form = document.getElementById('mailingListForm');
-const formSubmitButton = document.getElementById('mailingListFormSubmit');
-
 const errorTextElement = document.getElementById('subscriptionErrorText');
 
 form?.addEventListener('submit', async (e) => {
@@ -64,10 +60,6 @@ form?.addEventListener('submit', async (e) => {
     try {
         const response = await fetch(cmsUrl + '/api/subscribers', {
             method: 'POST',
-            headers: {
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-                // "Access-Control-Allow-Origin": "*",
-            },
             body: formData
         });
 
