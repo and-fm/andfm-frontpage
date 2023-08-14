@@ -31,6 +31,7 @@ export async function getStaticPaths() {
 
 const post = Astro.props as Post
 const author = post.author as Author
+const banner = post.banner as Media
 
 //@ts-ignore
 
@@ -44,7 +45,7 @@ const dateCreatedString = dateCreated?.toLocaleDateString('en-US', { year: 'nume
 <MainLayout titleProp={post.title} description={post.description}>
 	<Container>
         <header class="flex flex-col justify-start items-start gap-8">
-            {post?.banner ? <ImageRenderer width={1920} height={1080} class="w-full mx-auto rounded-xl" src={(post.banner as Media).sizes?.sixteenByNineLarge?.url} alt={author.name} /> : null}
+            {banner ? <ImageRenderer width={1920} height={1080} class="w-full mx-auto rounded-xl" src={banner.sizes?.sixteenByNineLarge?.url} alt={author.name} /> : null}
 
             <address class="flex items-center not-italic">
                 <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
