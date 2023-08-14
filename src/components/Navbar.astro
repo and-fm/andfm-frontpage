@@ -22,14 +22,16 @@ import { Image } from "astro:assets"
         <a class="rounded-xl bg-gradient-to-tr from-red-300 via-orange-300 to-yellow-300 p-4 px-6 text-center text-black font-bold" href="https://anxmusic.revelator.pro/en/sign-in">Login</a>
     </div>
     <div class="md:hidden block z-50">
+
         <button id="hamburgerToggleButton">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
             </svg>
         </button>
+
     </div>
 </nav>
-<div id="mobileMenu" class="hideToggle absolute flex flex-col gap-4 p-4 w-full h-full backdrop-blur-sm top-0 bg-black/70 z-20 md:hidden">
+<div id="mobileMenu" style="display: none;" class="md:hidden absolute flex flex-col gap-4 p-4 w-full h-full backdrop-blur-sm top-0 bg-black/70 z-20">
     <div class="w-fit mb-12 p-4"> <!-- Put logos and other things here -->
         <a href="/" class="w-fit">
             <Image src={Logo} width="128" height="128" alt="AND.FM Logo" loading="eager" class="w-12 h-12 object-contain" />
@@ -45,9 +47,11 @@ import { Image } from "astro:assets"
 
 <script>
     // basic code to add toggle visibility to hamburger menu
-    const mobileMenu = document?.getElementById("mobileMenu")
+    const mobileMenu = document?.getElementById("mobileMenu")!
+    
     document.getElementById("hamburgerToggleButton")?.addEventListener("click", () => {
-        mobileMenu?.classList.toggle("hideToggle")
+        const toggled = mobileMenu.style.display === "none"
+        mobileMenu.style.display = toggled ? "block" : "none"
     })
 </script>
 
