@@ -10,16 +10,15 @@ import MainLayout from "../../layouts/mainLayout.astro"
 import ImageRenderer from "../../components/ImageRenderer.astro"
 import Container from "../../components/Container.astro"
 
+import { isPostVisible } from "../../utils/contentUtils"
+
 export async function getStaticPaths() {
-    const res = await fetch(import.meta.env.PAYLOAD_CMS_URL + "/api/posts?depth=2", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-    })
+    const res = await fetch(import.meta.env.PAYLOAD_CMS_URL + "/api/posts?depth=2")
     const posts = await res.json()
 
-    return posts.docs.map((post: Post) => {
+    return posts.docs
+    .filter(isPostVisible) // dont publish draft posts
+    .map((post: Post) => {
         return {
             params: {
                 slug: post.slug
@@ -33,7 +32,7 @@ const post = Astro.props as Post
 const author = post.author as Author
 const banner = post.banner as Media
 
-//@ts-ignore
+const draft = post.status === "draft"
 
 const dateCreated = post.publishedDate ? new Date(post.publishedDate) : new Date(post.createdAt)
 const dateUpdated = null
@@ -60,6 +59,9 @@ const dateCreatedString = dateCreated?.toLocaleDateString('en-US', { year: 'nume
                 </div>
             </address>
         </header>
+
+        {draft ? <p class="text-orange-600 mt-8">This is a draft post. You can see this text either because your post is a draft and are either developing locally or viewing a preview build. Have a read before publishing, and make sure this is not on the production build.</p> : null} <!-- For draft posts, extra check -->
+
         <h1 class="text-3xl mt-10 font-extrabold lg:text-4xl text-white">{post.title}</h1>
         
         <!-- <div class="text-and-primary text-2xl font-bold italic text-center">{post.description}</div> -->
