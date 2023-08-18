@@ -12,6 +12,7 @@ import Container from "../../components/Container.astro"
 
 import { isPostVisible } from "../../utils/contentUtils"
 import { cmsFetch } from "../../utils/requests"
+import MailingListForm from "../../components/MailingListForm.astro"
 
 export async function getStaticPaths() {
     const res = await cmsFetch(import.meta.env.PAYLOAD_CMS_URL + "/api/posts?depth=2")
@@ -67,5 +68,9 @@ const dateCreatedString = dateCreated?.toLocaleDateString('en-US', { year: 'nume
         
         <!-- <div class="text-and-primary text-2xl font-bold italic text-center">{post.description}</div> -->
         <RichTextRenderer class="mt-5" content={post.content} />
+        <div class="my-24">
+            <MailingListForm />
+        </div>
 	</Container>
+    
 </MainLayout>
