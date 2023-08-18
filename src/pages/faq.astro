@@ -2,14 +2,10 @@
 import MainLayout from "../layouts/mainLayout.astro";
 import type { Faq } from "../../types/payload-types"
 import Container from "../components/Container.astro";
+import { cmsFetch } from "../utils/requests";
 
 
-const faqData = await fetch(import.meta.env.PAYLOAD_CMS_URL + "/api/globals/faq", {
-    method: "GET",
-    headers: {
-        "Content-Type": "application/json",
-    },
-})
+const faqData = await cmsFetch(import.meta.env.PAYLOAD_CMS_URL + "/api/globals/faq")
 
 const { questions } = await faqData.json() as Faq
 

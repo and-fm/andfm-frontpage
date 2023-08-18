@@ -15,6 +15,8 @@ export interface Config {
     media: Media;
     authors: Author;
     bannerMedia: BannerMedia;
+    subscribers: Subscriber;
+    integrations: Integration;
   };
   globals: {
     faq: Faq;
@@ -103,6 +105,8 @@ export interface Tag {
 export interface User {
   id: string;
   name: string;
+  role: 'user' | 'admin';
+  sub?: string;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -143,6 +147,24 @@ export interface BannerMedia {
       filename?: string;
     };
   };
+}
+export interface Subscriber {
+  id: string;
+  name: string;
+  email: string;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Integration {
+  id: string;
+  name: string;
+  description?: string;
+  role: 'user' | 'admin';
+  updatedAt: string;
+  createdAt: string;
+  enableAPIKey?: boolean;
+  apiKey?: string;
+  apiKeyIndex?: string;
 }
 export interface Faq {
   id: string;

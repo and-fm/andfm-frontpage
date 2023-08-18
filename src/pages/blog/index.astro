@@ -5,10 +5,11 @@ import Container from "../../components/Container.astro";
 import ImageRenderer from "../../components/ImageRenderer.astro";
 
 import { isPostVisible } from "../../utils/contentUtils"
+import { cmsFetch } from "../../utils/requests";
 
-const res = await fetch(import.meta.env.PAYLOAD_CMS_URL + "/api/posts?limit=40")
+const res = await cmsFetch(import.meta.env.PAYLOAD_CMS_URL + "/api/posts?limit=40")
 
-const defaultImage = await (await fetch(import.meta.env.PAYLOAD_CMS_URL + "/api/media/64da22c9d52c357fdc4da137")).json() as Media
+const defaultImage = await (await cmsFetch(import.meta.env.PAYLOAD_CMS_URL + "/api/media/64da22c9d52c357fdc4da137")).json() as Media
 const defaultThumbnail = defaultImage?.sizes?.sixteenByNineMedium
 
 const postJson = await res.json()

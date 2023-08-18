@@ -11,9 +11,10 @@ import ImageRenderer from "../../components/ImageRenderer.astro"
 import Container from "../../components/Container.astro"
 
 import { isPostVisible } from "../../utils/contentUtils"
+import { cmsFetch } from "../../utils/requests"
 
 export async function getStaticPaths() {
-    const res = await fetch(import.meta.env.PAYLOAD_CMS_URL + "/api/posts?depth=2")
+    const res = await cmsFetch(import.meta.env.PAYLOAD_CMS_URL + "/api/posts?depth=2")
     const posts = await res.json()
 
     return posts.docs
