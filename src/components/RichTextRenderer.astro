@@ -89,7 +89,7 @@ const createSpan = async (element: BlockElement): Promise<string> => {
         .join(" ");
     
     switch (element.type) {
-        case "link": return `${serializeLink(element as Link, leafTypes.link)}`
+        case "link": return `${await serializeLink(element as Link, leafTypes.link)}`
     }
     
     return `<span class='${calculatedClass}'>${text}</span>`;
@@ -126,7 +126,7 @@ const serializeBlock = async (block: Block): Promise<string> => {
         case "h5": return await serializeText("h5", "text-lg font-bold text-white")(children);
         case "h6": return await serializeText("h6", "text-base font-bold text-white")(children);
         case "upload": return await ImageRenderer({media: block.value!, alt: (block.value as Media).alt!, mediaType: "thumbnail"}) || ""
-        case "relationship": return serializeRelationship(block);
+        case "relationship": return await serializeRelationship(block);
         case "ul": return await serializeNested("ul", "ml-4 list-disc text-white")(children as Block[]);
         case "ol": return await serializeNested("ol", "ml-4 list-decimal text-white")(children as Block[]);
         case "li": return await serializeText("li", "text-white")(children);
