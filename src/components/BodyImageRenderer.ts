@@ -1,7 +1,6 @@
 import { getImage } from "astro:assets"
 
 import type { Media } from "../../types/payload-types"
-import type { DOMElement } from "./RichTextRenderer.astro";
 
 enum MediaType {
     thumbnail,

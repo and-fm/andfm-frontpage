@@ -1,91 +1,115 @@
 ---
-// import escapeHTML from 'escape-html';
-import { Text, leaf, Element } from 'slate';
-import ImageRenderer from './BodyImageRenderer.js';
+import { Text } from "slate";
+import ImageRenderer from "./BodyImageRenderer.js";
 
 // extends Element
 export type DOMElement = {
-    children: any,
-    node: any,
-    value: any,
-    type: string,
-}
+    children: any;
+    node: any;
+    value: any;
+    type: string;
+};
 
-export type DOMTransformer = (props : {
-    children: DOMElement[] | string,
-    node?: DOMElement,
-    value?: DOMElement,
+export type DOMTransformer = (props: {
+    children: DOMElement[] | string;
+    node?: DOMElement;
+    value?: DOMElement;
 }) => string | Promise<string | null>;
 
-const components: {[elem: string]: DOMTransformer} = {
-    h1: (props) => `<h1 class='text-white font-bold text-4xl'>${props.children}</h1>`,
-    h2: (props) => `<h2 class='text-white font-bold text-3xl'>${props.children}</h2>`,
-    h3: (props) => `<h3 class='text-white font-bold text-2xl'>${props.children}</h3>`,
-    h4: (props) => `<h4 class='text-white font-bold text-xl'>${props.children}</h4>`,
-    h5: (props) => `<h5 class='text-white font-bold text-lg'>${props.children}</h5>`,
-    h6: (props) => `<h6 class='text-white font-bold text-base'>${props.children}</h6>`,
+const components: { [elem: string]: DOMTransformer } = {
+    h1: (props) =>
+        `<h1 class='text-white font-bold text-4xl'>${props.children}</h1>`,
+    h2: (props) =>
+        `<h2 class='text-white font-bold text-3xl'>${props.children}</h2>`,
+    h3: (props) =>
+        `<h3 class='text-white font-bold text-2xl'>${props.children}</h3>`,
+    h4: (props) =>
+        `<h4 class='text-white font-bold text-xl'>${props.children}</h4>`,
+    h5: (props) =>
+        `<h5 class='text-white font-bold text-lg'>${props.children}</h5>`,
+    h6: (props) =>
+        `<h6 class='text-white font-bold text-base'>${props.children}</h6>`,
     p: (props) => `<p class='text-zinc-200 text-lg'>${props.children}</p>`,
-    blockquote: (props) => `<blockquote class='text-zinc-200 text-lg'>${props.children}</blockquote>`,
-    pre: (props) => `<pre class='text-zinc-200 text-lg'>${props.children}</pre>`,
-    code: (props) => `<code class='text-zinc-200 text-lg'>${props.children}</code>`,
-    li: (props) =>  `<li class='text-zinc-200 text-lg'>${props.children}</li>`,
+    blockquote: (props) =>
+        `<blockquote class='text-zinc-200 text-lg'>${props.children}</blockquote>`,
+    pre: (props) =>
+        `<pre class='text-zinc-200 text-lg'>${props.children}</pre>`,
+    code: (props) =>
+        `<code class='text-zinc-200 text-lg'>${props.children}</code>`,
+    li: (props) => `<li class='text-zinc-200 text-lg'>${props.children}</li>`,
     ol: (props) => `<ol class='text-zinc-200 text-lg'>${props.children}</ol>`,
     ul: (props) => `<ul class='text-zinc-200 text-lg'>${props.children}</ul>`,
-    upload: async ({node}) => {
-        return await ImageRenderer({media: node?.value, alt: node?.value, mediaType: "thumbnail"})
+    upload: async ({ node }) => {
+        return await ImageRenderer({
+            media: node?.value,
+            alt: node?.value,
+            mediaType: "thumbnail",
+        });
     },
-}
+};
 
 export const leafTypes = {
-    bold: 'font-bold',
-    italic: 'italic',
-    underline: 'underline',
-    strikethrough: 'line-through',
-    code: 'bg-gray-800 text-white font-mono',
-}
+    bold: "font-bold",
+    italic: "italic",
+    underline: "underline",
+    strikethrough: "line-through",
+    code: "bg-gray-800 text-white font-mono",
+};
 
-const serialize = (children: DOMElement[]): string => children?.map((node: DOMElement) => {
-    if (!node) return null;
+const serialize = (children: DOMElement[]): string =>
+    children
+        ?.map((node: DOMElement) => {
+            if (!node) return null;
 
-    if (Text.isText(node)) {
-        // const text = escapeHTML(node.text);
-        const text = node.text;
+            if (Text.isText(node)) {
+                // const text = escapeHTML(node.text);
+                const text = node.text;
 
-        const calculatedClass = Object.keys(node)
-        //@ts-expect-error
-        .filter((key) => leafTypes[key])
-        //@ts-expect-error
-        .map((key) => leafTypes[key])
-        .join('');
-        
-        if (calculatedClass) return `<span class="${calculatedClass}">${text}</span>`
-        return text;
-    }
+                const calculatedClass = Object.keys(node)
+                    //@ts-expect-error
+                    .filter((key) => leafTypes[key])
+                    //@ts-expect-error
+                    .map((key) => leafTypes[key])
+                    .join("");
 
-    const parent = components[node.type as keyof typeof components]
-    if (!parent) {
-        return `<p>${serialize(node.children)}</p>`
-    }
+                if (calculatedClass)
+                    return `<span class="${calculatedClass}">${text}</span>`;
+                return text;
+            }
 
-    const children = serialize(node.children);
-    return parent({ children, value: node.value as DOMElement, node });
-}).join("");
+            const parent = components[node.type as keyof typeof components];
+            if (!parent) {
+                return `<p>${serialize(node.children)}</p>`;
+            }
 
-const {content} = Astro.props;
+            const children = serialize(node.children);
+            return parent({ children, value: node.value as DOMElement, node });
+        })
+        .join("");
+
+const { content } = Astro.props;
 
 /**
  * Elements that will be directly appended onto the rendered div
  */
-const childElems = await Promise.all(content.map(async (node: DOMElement) => {
-    const parent = components[node.type as keyof typeof components]
-    
-    if (parent) {
-        return parent({ children: serialize(node.children), value: node.value as DOMElement, node })
-    } else {
-        return components.p({children: serialize(node.children)})
-    }
-}))
+const childElems = await Promise.all(
+    content.map(async (node: DOMElement) => {
+        const parent = components[node.type as keyof typeof components];
 
+        if (parent) {
+            return parent({
+                children: serialize(node.children),
+                value: node.value as DOMElement,
+                node,
+            });
+        } else {
+            return components.p({ children: serialize(node.children) });
+        }
+    }),
+);
 ---
-<div class={Astro.props.class + ' flex gap-4 flex-col'} {...Astro.props} set:html={childElems}>
-</div>
+
+<div
+    class={Astro.props.class + " flex gap-4 flex-col"}
+    set:html={childElems}
+/>
