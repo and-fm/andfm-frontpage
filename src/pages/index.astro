@@ -1,9 +1,53 @@
 ---
+import EmailFormInput from "../components/EmailFormInput.astro";
 import MailingListForm from "../components/MailingListForm.astro";
 import MainLayout from "../layouts/mainLayout.astro"
 ---
 
+<style>
+    .dottedGrid::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        background-color: black;
+        background-image: radial-gradient(#d4d4d4 1px, transparent 0);
+        background-size: 40px 40px;
+        background-position: -19px 0px;
+        z-index: 1;
+    }
+    
+    .dottedGrid::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        /* from red, via orange, to yellow */
+        background: black;
+        background-image: linear-gradient(to top, #ff7979, #ff7f00, #ffe100);
+        mix-blend-mode: multiply;
+        z-index: 2;
+    }
+</style>
+
 <MainLayout titleProp="Home" description="The beginnings of an amazing distributor, created by Aaron, Nick and Dave">
-    <div class="mb-32"></div>
-    <MailingListForm />
+    <!-- <div class="flex justify-center items-center w-full h-[70vh] absolute">
+        <div class="h-[90%] w-full m-20 mix-blend-screen relative rounded-full border-0">
+            <div class="dottedGrid"></div>
+        </div>
+    </div> -->
+    <div class="w-full mt-40 relative z-10 p-6">
+        <div class="w-full h-full flex flex-col justify-center items-center ">
+            <h1 class="tracking-tight text-white text-5xl text-center font-bold md:w-1/2">Hello, we're AND.</h1>
+            <h2 class="pt-5 tracking-tight text-white text-2xl text-center font-light md:w-1/2">We're building the world's best artist platform, starting with distribution.</h2>
+            
+            <p class="mx-auto max-w-2xl font-light sm:text-xl text-center mt-10 text-zinc-400">AND distribution is currently only available to a limited selection of artists. Sign up to be notified about our public launch!</p>
+        </div>
+        <EmailFormInput></EmailFormInput>
+    </div>
+
 </MainLayout>
