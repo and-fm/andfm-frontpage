@@ -132,7 +132,7 @@ const serializeBlock = async (block: Block): Promise<string> => {
         case "ol": return await serializeNested("ol", "ml-4 list-decimal text-white")(children as Block[]);
         case "li": return await serializeText("li", "text-white")(children);
         case "indent": return await serializeNested("div", "ml-4")(children as Block[]);
-        default: return await serializeText("p", "text-white")(children);
+        default: return await serializeText("p", "text-zinc-200")(children);
     }
 }
 
