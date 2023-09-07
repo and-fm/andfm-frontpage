@@ -48,7 +48,7 @@ const { content } = Astro.props;
  */
 const serializeLink = async (node: Link, className: string): Promise<string> => {
     const { children, url, newTab } = node;
-    const parsed = children?.map(createSpan).join("") ?? ""
+    const parsed = (await Promise.all(children?.map(createSpan))).join("") ?? ""
     return `<a href='${url}' class="${className}" target='${newTab ? "_blank" : "_self"}'>${parsed}</a>`
 }
 
