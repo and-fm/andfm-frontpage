@@ -1,0 +1,579 @@
+[
+    {
+        "children": [
+            {
+                "text": "header 1"
+            }
+        ],
+        "type": "h1"
+    },
+    {
+        "children": [
+            {
+                "text": "header 2"
+            }
+        ],
+        "type": "h2"
+    },
+    {
+        "children": [
+            {
+                "text": "header 3"
+            }
+        ],
+        "type": "h3"
+    },
+    {
+        "children": [
+            {
+                "text": "header 4"
+            }
+        ],
+        "type": "h4"
+    },
+    {
+        "children": [
+            {
+                "text": "header 5"
+            }
+        ],
+        "type": "h5"
+    },
+    {
+        "children": [
+            {
+                "text": "header 6"
+            }
+        ],
+        "type": "h6"
+    },
+    {
+        "children": [
+            {
+                "text": ""
+            }
+        ]
+    },
+    {
+        "children": [
+            {
+                "text": "regular text!"
+            }
+        ]
+    },
+    {
+        "children": [
+            {
+                "text": ""
+            }
+        ]
+    },
+    {
+        "children": [
+            {
+                "text": "yupee"
+            }
+        ]
+    },
+    {
+        "children": [
+            {
+                "text": ""
+            }
+        ]
+    },
+    {
+        "children": [
+            {
+                "text": ""
+            }
+        ],
+        "type": "upload",
+        "value": {
+            "id": "64dd72179b1fccd340b3017e",
+            "alt": "AND AND AND BRAND",
+            "filename": "andandand1.jpg",
+            "mimeType": "image/jpeg",
+            "filesize": 85689,
+            "width": 2000,
+            "height": 2000,
+            "sizes": {
+                "tiny": {
+                    "width": 128,
+                    "height": 128,
+                    "mimeType": "image/jpeg",
+                    "filesize": 2727,
+                    "filename": "andandand1-128x128.jpg",
+                    "url": "https://cdn.andistro.com/andcms/media/andandand1-128x128.jpg"
+                },
+                "thumbnail": {
+                    "width": 400,
+                    "height": 400,
+                    "mimeType": "image/jpeg",
+                    "filesize": 11440,
+                    "filename": "andandand1-400x400.jpg",
+                    "url": "https://cdn.andistro.com/andcms/media/andandand1-400x400.jpg"
+                },
+                "sixteenByNineMedium": {
+                    "width": 900,
+                    "height": 450,
+                    "mimeType": "image/jpeg",
+                    "filesize": 24699,
+                    "filename": "andandand1-900x450.jpg",
+                    "url": "https://cdn.andistro.com/andcms/media/andandand1-900x450.jpg"
+                },
+                "sixteenByNineLarge": {
+                    "width": 1200,
+                    "height": 600,
+                    "mimeType": "image/jpeg",
+                    "filesize": 34232,
+                    "filename": "andandand1-1200x600.jpg",
+                    "url": "https://cdn.andistro.com/andcms/media/andandand1-1200x600.jpg"
+                }
+            },
+            "createdAt": "2023-08-17T01:04:23.674Z",
+            "updatedAt": "2023-08-17T01:04:23.674Z",
+            "url": "https://cdn.andistro.com/andcms/media/andandand1.jpg"
+        },
+        "relationTo": "media"
+    },
+    {
+        "children": [
+            {
+                "text": ""
+            }
+        ]
+    },
+    {
+        "children": [
+            {
+                "text": ""
+            }
+        ],
+        "type": "relationship",
+        "value": {
+            "id": "64da6cbbd52c357fdc4da75e",
+            "title": "Building a world-leading artist platform...",
+            "slug": "idea-to-reality",
+            "author": {
+                "id": "64da6c1bd52c357fdc4da71b",
+                "name": "Aaron Demolder",
+                "shortBio": "Co-founder @ AND",
+                "profilePicture": "64da6d38d52c357fdc4da796",
+                "createdAt": "2023-08-14T18:02:03.921Z",
+                "updatedAt": "2023-08-14T18:16:54.983Z"
+            },
+            "description": "Developing an idea to reality",
+            "content": [
+                {
+                    "children": [
+                        {
+                            "text": "Developing an idea to reality",
+                            "bold": true
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": ""
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": "I've run a record label for almost 10 years now, and released everything from ambient music to drum and bass. During this time we've built up an incredible knowledge of the tools, the processes and the relationships needed to run it independently and efficiently, and to be able to maximise what we were paying our artists for their work."
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": ""
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": "But..."
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": ""
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": "It was "
+                        },
+                        {
+                            "text": "so",
+                            "underline": true
+                        },
+                        {
+                            "text": " frustrating?"
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": ""
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": "Why do I have to pay extra for a complex spreadsheet subscription? Why would I "
+                        },
+                        {
+                            "text": "not",
+                            "italic": true
+                        },
+                        {
+                            "text": " want to monetise youtube uploads? Why does that one popular track keep being claimed by that major label over and over? Why do I have to manually pay people each month - what is your cut even for?! Oh good, another form!"
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": ""
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": "Walls had been popping up over and over that baffled me, and after joining a discord community full of artists trying to navigate this themselves, without a label to magic it all away for them, I quickly discovered these problems were not unique to me - but were fundamental issues in the way distributors, or even the wider industry operated.  It had simply always been like this."
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": ""
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": "As someone who had just spent 3 years of a degree automating away repetitive software tasks (thank you autodesk maya), this sounded like an excellent challenge - and after discovering I could download the entire distributor's statements folder via python script, I created an automated royalty calculation system. "
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": "Regrettably, I did tell them about the issue where you could download everyone's statements, without even needing an account - which inadvertently broke my calculation system in the process."
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": ""
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": "But the precedent was set - I felt unstoppable, I can automate away my problems! So I set about designing a complete theoretical framework, rebuilding the entire music industry in my head and across several notes pages. Inevitably, this was a huge task, so it sat still for a long time while I worked on much easier things to feed my dopamine-starved 3-second-attention-span Gen Z brain. Later, Nick and I crossed paths and we got talking about the same poor experiences with services and our frustrations with the way things were. We had the same ambition of making something that didn't suck one way or another - and were fortunate enough to be surrounded by supportive and talented people who could help us make it happen (shout out Dave)."
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": ""
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": "So here we are - with AND, our work-in-progress master-plan solution to this huge problem. Not just as another distributor looking to cash in on the rise of the bedroom producer, or as a tech startup SaaS rinsing artists of their royalties riding the latest buzzwords - but as a "
+                        },
+                        {
+                            "text": "complete platform",
+                            "bold": true
+                        },
+                        {
+                            "text": " which genuinely provides the best product to the indie music market. To all my friends following their passion in the arts and suffering as a result - we're trying to make it better."
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": ""
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": "We're starting off with distribution, to solve the immediate issues we've been hearing from our community, and then planning to organically grow to the stage where we have all the features an artist or label needs to run their music business - with as little admin as possible. So they can focus on what matters most, the art."
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": ""
+                        }
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "text": "If you're interested in hearing more about the platform, or want to sign up ASAP - throw your details into our waiting list on our homepage."
+                        }
+                    ]
+                }
+            ],
+            "status": "published",
+            "createdAt": "2023-08-14T18:04:43.930Z",
+            "updatedAt": "2023-08-17T01:31:12.190Z",
+            "banner": {
+                "id": "64da6d73d52c357fdc4da7c3",
+                "alt": "and prototype image",
+                "filename": "and-test.jpg",
+                "mimeType": "image/jpeg",
+                "filesize": 85763,
+                "width": 1920,
+                "height": 1080,
+                "sizes": {
+                    "tiny": {
+                        "width": 128,
+                        "height": 128,
+                        "mimeType": "image/jpeg",
+                        "filesize": 2134,
+                        "filename": "and-test-128x128.jpg",
+                        "url": "https://cdn.andistro.com/andcms/media/and-test-128x128.jpg"
+                    },
+                    "thumbnail": {
+                        "width": 400,
+                        "height": 400,
+                        "mimeType": "image/jpeg",
+                        "filesize": 9405,
+                        "filename": "and-test-400x400.jpg",
+                        "url": "https://cdn.andistro.com/andcms/media/and-test-400x400.jpg"
+                    },
+                    "sixteenByNineMedium": {
+                        "width": 900,
+                        "height": 450,
+                        "mimeType": "image/jpeg",
+                        "filesize": 31043,
+                        "filename": "and-test-900x450.jpg",
+                        "url": "https://cdn.andistro.com/andcms/media/and-test-900x450.jpg"
+                    },
+                    "sixteenByNineLarge": {
+                        "width": 1200,
+                        "height": 600,
+                        "mimeType": "image/jpeg",
+                        "filesize": 45635,
+                        "filename": "and-test-1200x600.jpg",
+                        "url": "https://cdn.andistro.com/andcms/media/and-test-1200x600.jpg"
+                    }
+                },
+                "createdAt": "2023-08-14T18:07:47.754Z",
+                "updatedAt": "2023-08-14T18:07:47.754Z",
+                "url": "https://cdn.andistro.com/andcms/media/and-test.jpg"
+            },
+            "lastUpdated": "2023-08-12T23:00:00.000Z",
+            "publishedDate": "2023-08-12T23:00:00.000Z"
+        },
+        "relationTo": "posts"
+    },
+    {
+        "children": [
+            {
+                "text": ""
+            }
+        ]
+    },
+    {
+        "children": [
+            {
+                "text": ""
+            }
+        ]
+    },
+    {
+        "type": "ul",
+        "children": [
+            {
+                "children": [
+                    {
+                        "text": "dotpoint list 1"
+                    }
+                ],
+                "type": "li"
+            },
+            {
+                "children": [
+                    {
+                        "text": "aoijoiajef"
+                    }
+                ],
+                "type": "li"
+            },
+            {
+                "children": [
+                    {
+                        "text": "qerg"
+                    }
+                ],
+                "type": "li"
+            }
+        ]
+    },
+    {
+        "children": [
+            {
+                "text": ""
+            }
+        ]
+    },
+    {
+        "type": "ol",
+        "children": [
+            {
+                "children": [
+                    {
+                        "text": "numberedlist1"
+                    }
+                ],
+                "type": "li"
+            },
+            {
+                "children": [
+                    {
+                        "text": "numbered2"
+                    }
+                ],
+                "type": "li"
+            }
+        ]
+    },
+    {
+        "children": [
+            {
+                "text": ""
+            }
+        ]
+    },
+    {
+        "type": "indent",
+        "children": [
+            {
+                "children": [
+                    {
+                        "text": "indented"
+                    }
+                ]
+            },
+            {
+                "children": [
+                    {
+                        "text": "more indented"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "children": [
+            {
+                "text": ""
+            }
+        ]
+    },
+    {
+        "children": [
+            {
+                "text": ""
+            },
+            {
+                "type": "link",
+                "linkType": "custom",
+                "url": "https://davitg.com",
+                "newTab": true,
+                "children": [
+                    {
+                        "text": "Link to another thing"
+                    }
+                ]
+            },
+            {
+                "text": ""
+            }
+        ]
+    },
+    {
+        "children": [
+            {
+                "text": ""
+            }
+        ]
+    },
+    {
+        "children": [
+            {
+                "text": "BOLD",
+                "bold": true
+            }
+        ]
+    },
+    {
+        "children": [
+            {
+                "text": "Italics",
+                "italic": true
+            }
+        ]
+    },
+    {
+        "children": [
+            {
+                "text": "Underscore",
+                "underline": true
+            }
+        ]
+    },
+    {
+        "children": [
+            {
+                "text": "Strikethrough",
+                "strikethrough": true
+            }
+        ]
+    },
+    {
+        "children": [
+            {
+                "text": "Code comment thing",
+                "code": true
+            }
+        ]
+    },
+    {
+        "children": [
+            {
+                "code": true,
+                "text": ""
+            }
+        ]
+    }
+]
