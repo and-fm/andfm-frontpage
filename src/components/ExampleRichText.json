@@ -104,7 +104,7 @@
                     "mimeType": "image/jpeg",
                     "filesize": 2727,
                     "filename": "andandand1-128x128.jpg",
-                    "url": "https://cdn.andistro.com/andcms/media/andandand1-128x128.jpg"
+                    "url": "https://cdn.and.fm/andcms/media/andandand1-128x128.jpg"
                 },
                 "thumbnail": {
                     "width": 400,
@@ -112,7 +112,7 @@
                     "mimeType": "image/jpeg",
                     "filesize": 11440,
                     "filename": "andandand1-400x400.jpg",
-                    "url": "https://cdn.andistro.com/andcms/media/andandand1-400x400.jpg"
+                    "url": "https://cdn.and.fm/andcms/media/andandand1-400x400.jpg"
                 },
                 "sixteenByNineMedium": {
                     "width": 900,
@@ -120,7 +120,7 @@
                     "mimeType": "image/jpeg",
                     "filesize": 24699,
                     "filename": "andandand1-900x450.jpg",
-                    "url": "https://cdn.andistro.com/andcms/media/andandand1-900x450.jpg"
+                    "url": "https://cdn.and.fm/andcms/media/andandand1-900x450.jpg"
                 },
                 "sixteenByNineLarge": {
                     "width": 1200,
@@ -128,12 +128,12 @@
                     "mimeType": "image/jpeg",
                     "filesize": 34232,
                     "filename": "andandand1-1200x600.jpg",
-                    "url": "https://cdn.andistro.com/andcms/media/andandand1-1200x600.jpg"
+                    "url": "https://cdn.and.fm/andcms/media/andandand1-1200x600.jpg"
                 }
             },
             "createdAt": "2023-08-17T01:04:23.674Z",
             "updatedAt": "2023-08-17T01:04:23.674Z",
-            "url": "https://cdn.andistro.com/andcms/media/andandand1.jpg"
+            "url": "https://cdn.and.fm/andcms/media/andandand1.jpg"
         },
         "relationTo": "media"
     },
@@ -360,7 +360,7 @@
                         "mimeType": "image/jpeg",
                         "filesize": 2134,
                         "filename": "and-test-128x128.jpg",
-                        "url": "https://cdn.andistro.com/andcms/media/and-test-128x128.jpg"
+                        "url": "https://cdn.and.fm/andcms/media/and-test-128x128.jpg"
                     },
                     "thumbnail": {
                         "width": 400,
@@ -368,7 +368,7 @@
                         "mimeType": "image/jpeg",
                         "filesize": 9405,
                         "filename": "and-test-400x400.jpg",
-                        "url": "https://cdn.andistro.com/andcms/media/and-test-400x400.jpg"
+                        "url": "https://cdn.and.fm/andcms/media/and-test-400x400.jpg"
                     },
                     "sixteenByNineMedium": {
                         "width": 900,
@@ -376,7 +376,7 @@
                         "mimeType": "image/jpeg",
                         "filesize": 31043,
                         "filename": "and-test-900x450.jpg",
-                        "url": "https://cdn.andistro.com/andcms/media/and-test-900x450.jpg"
+                        "url": "https://cdn.and.fm/andcms/media/and-test-900x450.jpg"
                     },
                     "sixteenByNineLarge": {
                         "width": 1200,
@@ -384,12 +384,12 @@
                         "mimeType": "image/jpeg",
                         "filesize": 45635,
                         "filename": "and-test-1200x600.jpg",
-                        "url": "https://cdn.andistro.com/andcms/media/and-test-1200x600.jpg"
+                        "url": "https://cdn.and.fm/andcms/media/and-test-1200x600.jpg"
                     }
                 },
                 "createdAt": "2023-08-14T18:07:47.754Z",
                 "updatedAt": "2023-08-14T18:07:47.754Z",
-                "url": "https://cdn.andistro.com/andcms/media/and-test.jpg"
+                "url": "https://cdn.and.fm/andcms/media/and-test.jpg"
             },
             "lastUpdated": "2023-08-12T23:00:00.000Z",
             "publishedDate": "2023-08-12T23:00:00.000Z"
