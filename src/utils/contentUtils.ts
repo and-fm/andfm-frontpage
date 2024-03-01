@@ -9,12 +9,12 @@ import { getBranch, getNodeEnv } from "./envUtils"
  */
 export const isPostVisible = (post: Post) => {
     
-    // Condition: if we are building to the preview branch, show everything
+    // Condition: if we are building to the preview branch, show every post
     // if not, only show published posts
     const branch = getBranch()
     if (branch === "develop") return true
 
-    // Condition: if we are in development mode, show everything
+    // Condition: if we are in development mode, show every post
     // this is because in development mode we want to see draft posts,
     // and the front-end should cater to that by showing a "draft" warning
     // on the page.

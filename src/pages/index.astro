@@ -1,7 +1,7 @@
 ---
-import EmailFormInput from "../components/EmailFormInput.astro";
-import MailingListForm from "../components/MailingListForm.astro";
-import MainLayout from "../layouts/mainLayout.astro"
+import CallToAction from "../components/CallToAction.astro";
+import Container from "../components/Container.astro";
+import MainLayout from "../layouts/mainLayout.astro";
 ---
 
 <style>
@@ -18,7 +18,7 @@ import MainLayout from "../layouts/mainLayout.astro"
         background-position: -19px 0px;
         z-index: 1;
     }
-    
+
     .dottedGrid::after {
         content: "";
         position: absolute;
@@ -34,27 +34,23 @@ import MainLayout from "../layouts/mainLayout.astro"
     }
 </style>
 
-<MainLayout titleProp="Home" description="The beginnings of an amazing distributor, created by Aaron, Nick and Dave">
-    <!-- <div class="flex justify-center items-center w-full h-[70vh] absolute">
-        <div class="h-[90%] w-full m-20 mix-blend-screen relative rounded-full border-0">
-            <div class="dottedGrid"></div>
-        </div>
-    </div> -->
-    <div class="w-full mt-40 relative z-10 p-6">
-        <div class="w-full h-full flex flex-col justify-center items-center ">
-            <h1 class="tracking-tight text-white text-5xl text-center font-bold md:w-1/2">Hello, we're AND.</h1>
-            <h2 class="pt-5 tracking-tight text-white text-2xl text-center font-light md:w-1/2">We're building the world's best artist platform, starting with distribution.</h2>
-            
-            <p class="mx-auto max-w-2xl font-light sm:text-lg text-center mt-10 mb-2 text-zinc-300">AND distribution is currently only available to a limited selection of artists. Join the waitlist to reserve your spot!</p>
-        </div>
-        <!-- <EmailFormInput></EmailFormInput> -->
-        <div class="sm:flex-col items-center mx-auto space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
-            <div class=""><a href="https://and.fm/waitlist" target="_blank" id="waitlistBtn" type="submit" class="py-3 px-5 w-full text-sm font-medium text-center text-black rounded-lg cursor-pointer bg-gradient-to-tr from-red-300 via-orange-300 to-yellow-300 sm:rounded">Join Waitlist</a></div>
-        </div>
-        <p class="mx-auto max-w-2xl font-light sm:text-lg text-center mt-16 mb-2 text-zinc-300">Join our Discord community for faster updates and more juicy info!</p>
-        <div class="sm:flex-col items-center mx-auto space-y-4 max-w-screen-sm sm:flex sm:space-y-0">
-            <div class=""><a href="https://and.fm/discord" target="_blank" id="discordJoinButton" type="submit" class="py-3 px-5 w-full text-sm font-medium text-center text-black rounded-lg cursor-pointer bg-gradient-to-tr from-red-300 via-orange-300 to-yellow-300 sm:rounded">Join Discord</a></div>
-        </div>
-    </div>
+<MainLayout
+    pageTitle="Home"
+    pageDescription="The beginnings of an amazing distributor, created by Aaron, Nick and Dave"
+>
+    <Container>
+        <div class="z-10 mx-auto mt-32">
 
+            <h1 class="text-5xl font-bold tracking-tight text-center text-white">
+                Hello, we're <span style="text-shadow: 0.3rem 0.3rem #e07d3b">AND</span>
+            </h1>
+
+            <h2 class="pt-5 text-2xl font-light tracking-tight text-center text-white">
+                We're building the world's best artist platform, starting with
+                distribution.
+            </h2>
+
+            <CallToAction />
+        </div>
+    </Container>
 </MainLayout>
