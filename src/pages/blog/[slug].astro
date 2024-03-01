@@ -12,7 +12,8 @@ import Container from "../../components/Container.astro"
 
 import { isPostVisible } from "../../utils/contentUtils"
 import { cmsFetch } from "../../utils/requests"
-import MailingListForm from "../../components/MailingListForm.astro"
+
+import CallToAction from "../../components/CallToAction.astro"
 
 export async function getStaticPaths() {
     const res = await cmsFetch(import.meta.env.PAYLOAD_CMS_URL + "/api/posts?depth=2")
@@ -43,14 +44,14 @@ const dateUpdated = null
 const dateCreatedString = dateCreated?.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
 
 ---
-<MainLayout titleProp={post.title} description={post.description}>
+<MainLayout pageTitle={post.title} pageDescription={post.description}>
 	<Container>
-        <header class="flex flex-col justify-start items-start gap-8">
+        <header class="flex flex-col items-start justify-start gap-8">
             {banner ? <ImageRenderer width={1920} height={1080} class="w-full mx-auto rounded-xl" src={banner.sizes?.sixteenByNineLarge?.url} alt={author.name} /> : null}
 
             <address class="flex items-center not-italic">
                 <div class="inline-flex items-center mr-3 text-sm text-white">
-                    {author?.profilePicture ? <ImageRenderer width={400} height={400} class="mr-4 w-16 h-16 rounded-full" src={(author?.profilePicture as Media).sizes?.thumbnail?.url!} alt={author.name} /> : null}
+                    {author?.profilePicture ? <ImageRenderer width={400} height={400} class="w-16 h-16 mr-4 rounded-full" src={(author?.profilePicture as Media).sizes?.thumbnail?.url!} alt={author.name} /> : null}
                     <div>
                         <a href="#" rel="author" class="text-xl font-bold text-white">{author?.name}</a>
                         <p class="text-base font-light text-gray-400">{author?.shortBio}</p>
@@ -62,15 +63,16 @@ const dateCreatedString = dateCreated?.toLocaleDateString('en-US', { year: 'nume
             </address>
         </header>
 
-        {draft ? <p class="text-orange-600 mt-8">This is a draft post. You can see this text either because your post is a draft and are either developing locally or viewing a preview build. Have a read before publishing, and make sure this is not on the production build.</p> : null} <!-- For draft posts, extra check -->
+        {draft ? <p class="mt-8 text-orange-600">This is a draft post. You can see this text either because your post is a draft and are either developing locally or viewing a preview build. Have a read before publishing, and make sure this is not on the production build.</p> : null} <!-- For draft posts, extra check -->
 
-        <h1 class="text-3xl mt-10 font-extrabold lg:text-4xl text-white">{post.title}</h1>
+        <h1 class="mt-10 text-3xl font-extrabold text-white lg:text-4xl">{post.title}</h1>
         
-        <!-- <div class="text-and-primary text-2xl font-bold italic text-center">{post.description}</div> -->
+        <!-- <div class="text-2xl italic font-bold text-center text-and-primary">{post.description}</div> -->
         <RichTextRenderer class="mt-5" content={post.content} />
+
         <div class="my-24" style="width:100%">
-            <MailingListForm />
+            <!-- <MailingListForm /> -->
+            <CallToAction />
         </div>
 	</Container>
-    
 </MainLayout>

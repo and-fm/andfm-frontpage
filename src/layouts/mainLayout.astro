@@ -3,13 +3,13 @@ import Navbar from '../components/Navbar.astro';
 import Footer from "../components/Footer.astro"
 
 interface Props {
-	titleProp: string;
-	description: string;
+	pageTitle: string;
+	pageDescription: string;
 }
 
-const {titleProp, description} = Astro.props as Props;
+const {pageTitle, pageDescription} = Astro.props as Props;
 
-const title = titleProp + " | AND"
+const title = pageTitle + " | AND"
 ---
 
 <html lang="en" class="bg-and-black">
@@ -28,20 +28,20 @@ const title = titleProp + " | AND"
         <!-- Primary Meta Tags -->
         <title>{title}</title>
         <meta name="title" content={title} />
-        <meta name="description" content={description} />
+        <meta name="description" content={pageDescription} />
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://and.fm" />
         <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
+        <meta property="og:description" content={pageDescription} />
         <!-- <meta property="og:image" content="https://metatags.io/images/meta-tags.png" /> -->
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://and.fm" />
         <meta property="twitter:title" content={title} />
-        <meta property="twitter:description" content={description} />
+        <meta property="twitter:description" content={pageDescription} />
         <!-- <meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" /> -->
 
         <style is:global>
@@ -55,8 +55,8 @@ const title = titleProp + " | AND"
         </style>        
 
 	</head>
-	<body class="min-h-screen flex flex-col justify-between">
-		<div class="h-full w-full">
+	<body class="flex flex-col justify-between min-h-screen">
+		<div class="w-full h-full">
             <Navbar />
             <slot /> <!-- children / nested stuff here -->
         </div>

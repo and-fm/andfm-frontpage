@@ -1,10 +1,11 @@
-# nick
-## nick
-### nick
-#### nick
+# AND.FM Landing Page / Website
+
+## Important to know
+- Types are manually copied from the CMS in `./types/payload-types.ts`
 
 # Get started
 Installing from source
+
 ```bash
 # install yarn first, if you don't have it already
 npm install --global yarn
@@ -12,7 +13,6 @@ npm install --global yarn
 yarn # installs packages for the project
 yarn dev # runs the development server
 ```
-
 
 ## 🧞 Commands
 
@@ -47,6 +47,6 @@ There's nothing special about `src/components/`, but that's where we like to put
 
 Any static assets, like images, can be placed in the `public/` directory.
 
-## 👀 Want to learn more?
+## More info
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+[Astro Documentation](https://docs.astro.build)

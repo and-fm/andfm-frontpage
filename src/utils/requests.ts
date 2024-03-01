@@ -1,5 +1,3 @@
-import { Integration } from "../../types/payload-types"
-
 export const cmsFetch = (url: string): Promise<Response> => {
     return fetch(url, {
         headers: {
