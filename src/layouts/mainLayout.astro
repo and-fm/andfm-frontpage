@@ -53,11 +53,46 @@ const title = pageTitle + " | AND"
                 -ms-transition: opacity 1s ease; 
                 -o-transition: opacity 1s ease; 
             }
+            
+            
+            *::-webkit-scrollbar-track {
+                border-radius: 5px;
+                margin-right: 30px;
+                background-color: #232323;
+            }
+            
+            *::-webkit-scrollbar {
+             height: 0.5rem;
+             width: 0.5rem;
+            }    
+            /*Scroll bar nav*/
+
+            *::-webkit-scrollbar-track:hover {
+            background-color: #232323;
+            }
+
+            *::-webkit-scrollbar-track:active {
+            background-color: #323232;
+            }
+            
+            *::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background-color: #4c4c4c;
+            }
+            
+            *::-webkit-scrollbar-thumb:hover {
+            background-color: #5f5f5f;
+            }
+
+            *::-webkit-scrollbar-thumb:active {
+            background-color: #5f5f5f;
+            } 
         </style>        
 
         <ViewTransitions />
 	</head>
-	<body class="flex flex-col justify-between min-h-screen">
+    <!-- keep overflow-x-clip otherwise the navbar (which is of width 100vw) will cause the page to have a horizontal scrollbar -->
+	<body class="flex flex-col justify-between min-h-screen overflow-x-clip">
 		<div class="w-full h-full">
             <Navbar />
             <slot />
