@@ -57,7 +57,8 @@ const title = pageTitle + " | AND"
 
         <ViewTransitions />
 	</head>
-	<body class="flex flex-col justify-between min-h-screen">
+    <!-- keep overflow-x-clip otherwise the navbar (which is of width 100vw) will cause the page to have a horizontal scrollbar -->
+	<body class="flex flex-col justify-between min-h-screen overflow-x-clip">
 		<div class="w-full h-full">
             <Navbar />
             <slot />
