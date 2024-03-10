@@ -53,6 +53,37 @@ const title = pageTitle + " | AND"
                 -ms-transition: opacity 1s ease; 
                 -o-transition: opacity 1s ease; 
             }
+
+            /* Chrome, Edge and Safari */
+            *::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+            }
+            *::-webkit-scrollbar-track {
+            border-radius: 8px;
+            background-color: #232323;
+            }
+
+            *::-webkit-scrollbar-track:hover {
+            background-color: #232323;
+            }
+
+            *::-webkit-scrollbar-track:active {
+            background-color: #323232;
+            }
+
+            *::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background-color: #4c4c4c;
+            }
+
+            *::-webkit-scrollbar-thumb:hover {
+            background-color: #5f5f5f;
+            }
+
+            *::-webkit-scrollbar-thumb:active {
+            background-color: #5f5f5f;
+            }
         </style>        
 
         <ViewTransitions />
