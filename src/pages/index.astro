@@ -1,56 +1,95 @@
+
+
 ---
-import CallToAction from "../components/CallToAction.astro";
-import Container from "../components/Container.astro";
-import MainLayout from "../layouts/mainLayout.astro";
+import Logo from "../assets/logo.png";
+import { Image } from "astro:assets";
 ---
 
-<style>
-    .dottedGrid::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: 0;
-        background-color: black;
-        background-image: radial-gradient(#d4d4d4 1px, transparent 0);
-        background-size: 40px 40px;
-        background-position: -19px 0px;
-        z-index: 1;
-    }
-
-    .dottedGrid::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: 0;
-        /* from red, via orange, to yellow */
-        background: black;
-        background-image: linear-gradient(to top, #ff7979, #ff7f00, #ffe100);
-        mix-blend-mode: multiply;
-        z-index: 2;
-    }
-</style>
-
-<MainLayout
-    pageTitle="Home"
-    pageDescription="The beginnings of an amazing distributor, created by Aaron, Nick and Dave"
->
-    <Container>
-        <div class="z-10 mx-auto mt-32">
-
-            <h1 class="text-5xl font-bold tracking-tight text-center text-white">
-                hello, we're <span style="text-shadow: 0.3rem 0.3rem #e07d3b">and.fm</span>
-            </h1>
-
-            <h2 class="pt-5 text-2xl font-light tracking-tight text-center text-white">
-                we're building the world's best artist platform, starting with
-                distribution.
-            </h2>
-
-            <CallToAction />
+<div class="min-h-screen bg-yellow-200 text-black">
+    <header class="border-b-4 border-black bg-white p-4">
+      <nav class="container mx-auto flex items-center justify-between">
+        <a href="/" class="flex flex-row items-center gap-4">
+        <Image
+            src={Logo}
+            width="128"
+            height="128"
+            alt="AND.FM Logo"
+            loading="eager"
+            class="object-contain w-12 h-12"
+        />
+        <span  class="text-3xl font-bold">
+          and.fm
+        </span>
+      </a>
+        <div class="flex items-center space-x-4">
+          <a href="/about" class="font-medium hover:underline">
+            About
+          </a>
+          <a href="/pricing" class="font-medium hover:underline">
+            Pricing
+          </a>
+          <button class="bg-black text-white hover:bg-gray-800 px-4 py-2">
+            Log In
+          </button>
         </div>
-    </Container>
-</MainLayout>
+      </nav>
+    </header>
+    <main class="container mx-auto px-4 py-12">
+      <div class="mb-12 text-center">
+        <h1 class="mb-4 text-6xl font-bold">
+          Distribute Your Music,
+          <br />
+          <span class="relative">
+            <span class="relative z-10">Amplify Your Reach</span>
+            <span class="absolute bottom-2 left-0 z-0 h-4 w-full bg-pink-400" />
+          </span>
+        </h1>
+        <p class="mb-8 text-xl">
+          Get your tracks on all major platforms. Fast, easy, and fair.
+        </p>
+        <div class="flex justify-center space-x-4">
+          <button class="bg-black text-white hover:bg-gray-800 px-4 py-2">
+            <!-- <Upload class="mr-2 h-5 w-5" /> -->
+            Start Uploading
+          </button>
+          <button
+            class="border-2 border-black bg-transparent text-black hover:bg-black hover:text-white px-4 py-2"
+          >
+            Learn More
+          </button>
+        </div>
+      </div>
+      <div class="grid gap-8 md:grid-cols-3">
+        <div class="rounded-lg border-4 border-black bg-blue-300 p-6 shadow-[8px_8px_0_0_rgba(0,0,0,1)]">
+          <!-- <Music class="mb-4 h-12 w-12" /> -->
+          <h2 class="mb-2 text-2xl font-bold">Wide Distribution</h2>
+          <p>Get your music on Spotify, Apple Music, and more.</p>
+        </div>
+        <div class="rounded-lg border-4 border-black bg-green-300 p-6 shadow-[8px_8px_0_0_rgba(0,0,0,1)]">
+          <!-- <Zap class="mb-4 h-12 w-12" /> -->
+          <h2 class="mb-2 text-2xl font-bold">Fast Payouts</h2>
+          <p>Receive your earnings quickly and securely.</p>
+        </div>
+        <div class="rounded-lg border-4 border-black bg-red-300 p-6 shadow-[8px_8px_0_0_rgba(0,0,0,1)]">
+          <!-- <Play class="mb-4 h-12 w-12" /> -->
+          <h2 class="mb-2 text-2xl font-bold">Playlist Pitching</h2>
+          <p>Increase your chances of getting on popular playlists.</p>
+        </div>
+      </div>
+      <div class="mt-12 rounded-lg border-4 border-black bg-white p-8 shadow-[8px_8px_0_0_rgba(0,0,0,1)]">
+        <h2 class="mb-4 text-3xl font-bold">Join Our Newsletter</h2>
+        <p class="mb-4">Stay updated with the latest in music distribution and industry tips.</p>
+        <form class="flex space-x-2">
+          <input
+            class="flex-grow border-2 border-black bg-transparent px-4 py-2"
+            placeholder="Enter your email"
+            type="email"
+          />
+          <button class="bg-black text-white hover:bg-gray-800 px-4 py-2">Subscribe</button>
+        </form>
+      </div>
+    </main>
+    <footer class="mt-12 border-t-4 border-black bg-white p-4 text-center">
+      <p>&copy; andfm limited {new Date().getFullYear()}</p>
+    </footer>
+  </div>
