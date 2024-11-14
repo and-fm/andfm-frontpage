@@ -6,7 +6,7 @@ import { Image } from "astro:assets"
 
 const props = {
     ...Astro.props,
-    class: Astro.props.class + " easeload", 
+    class: Astro.props.class, 
     onload: "this.style.opacity=1"
 } as any
 
