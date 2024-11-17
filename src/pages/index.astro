@@ -5,15 +5,16 @@ import Logo from "../assets/logo.png";
 import { Image } from "astro:assets";
 ---
 
-<div class="min-h-screen bg-yellow-200 text-black">
-    <header class="border-b-4 border-black bg-white p-4">
+<div class="flex flex-col justify-between min-h-screen bg-yellow-200 text-black">
+    <div>
+    <header class="bg-surface-700 text-white p-4">
       <nav class="container mx-auto flex items-center justify-between">
         <a href="/" class="flex flex-row items-center gap-4">
         <Image
             src={Logo}
             width="128"
             height="128"
-            alt="AND.FM Logo"
+            alt="and.fm logo"
             loading="eager"
             class="object-contain w-12 h-12"
         />
@@ -28,7 +29,7 @@ import { Image } from "astro:assets";
           <a href="/pricing" class="font-medium hover:underline">
             Pricing
           </a>
-          <button class="bg-black text-white hover:bg-gray-800 px-4 py-2">
+          <button class="bg-white text-black hover:bg-gray-100 px-4 py-2">
             Log In
           </button>
         </div>
@@ -37,15 +38,15 @@ import { Image } from "astro:assets";
     <main class="container mx-auto px-4 py-12">
       <div class="mb-12 text-center">
         <h1 class="mb-4 text-6xl font-bold">
-          Distribute Your Music,
+          An Artist's Home Base
           <br />
           <span class="relative">
-            <span class="relative z-10">Amplify Your Reach</span>
+            <span class="relative z-10">All You Need</span>
             <span class="absolute bottom-2 left-0 z-0 h-4 w-full bg-pink-400" />
           </span>
         </h1>
         <p class="mb-8 text-xl">
-          Get your tracks on all major platforms. Fast, easy, and fair.
+          No limits, no fuss, 100% transparent.
         </p>
         <div class="flex justify-center space-x-4">
           <button class="bg-black text-white hover:bg-gray-800 px-4 py-2">
@@ -89,6 +90,7 @@ import { Image } from "astro:assets";
         </form>
       </div>
     </main>
+</div>
     <footer class="mt-12 border-t-4 border-black bg-white p-4 text-center">
       <p>&copy; andfm limited {new Date().getFullYear()}</p>
     </footer>
