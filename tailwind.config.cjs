@@ -7,7 +7,7 @@ module.exports = {
         phone: "430px",
       },
       colors: {
-        "surface-700": "#3d3d3d",
+        "surface-600": "#525252",
       },
     },
   },
