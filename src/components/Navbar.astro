@@ -1,0 +1,139 @@
+---
+import Logo from "../assets/logo.png";
+import { Image } from "astro:assets";
+---
+
+<style>
+  :root {
+    --bar-width: 25px;
+    --bar-height: 3px;
+    --hamburger-gap: 6px;
+    --foreground: #333;
+    --background: white;
+    --hamburger-margin: 8px;
+    --animation-timing: 200ms ease-in-out;
+    --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
+  }
+
+  .hamburger-menu {
+    --x-width: calc(var(--hamburger-height) * 1.41421356237);
+    display: flex;
+    flex-direction: column;
+    gap: var(--hamburger-gap);
+    cursor: pointer;
+    height: max-content;
+  }
+
+  .hamburger-menu {
+    @apply md:hidden !important;
+  }
+
+  .hamburger-menu::before,
+  .hamburger-menu::after,
+  .hamburger-menu input {
+    content: "";
+    width: var(--bar-width);
+    height: var(--bar-height);
+    background-color: white;
+    transform-origin: left center;
+    transition:
+      opacity var(--animation-timing),
+      width var(--animation-timing),
+      rotate var(--animation-timing),
+      translate var(--animation-timing),
+      background-color var(--animation-timing);
+  }
+
+  .hamburger-menu input {
+    appearance: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    pointer-events: none;
+  }
+
+  .hamburger-menu:has(input.checked-nav)::before {
+    rotate: 45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / -2);
+  }
+
+  .hamburger-menu:has(input.checked-nav)::after {
+    rotate: -45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / 2);
+  }
+
+  .hamburger-menu input.checked-nav {
+    opacity: 0;
+    width: 0;
+  }
+
+  @media (max-width: 767px) {
+    .mobile-nav {
+      display: none;
+    }
+
+    .hamburger-menu:has(input.checked-nav) + .mobile-nav {
+      display: flex;
+    }
+  }
+</style>
+
+<nav
+  class="container md:px-12 mx-auto flex md:flex-row flex-col gap-4 md:items-center justify-between"
+>
+  <a href="/" class="flex flex-row items-center gap-4">
+    <Image
+      src={Logo}
+      width="128"
+      height="128"
+      alt="and.fm logo"
+      loading="eager"
+      class="object-contain w-12 h-12"
+    />
+    <span class="text-3xl font-bold"> and.fm </span>
+  </a>
+  <label id="mobile-nav" class="hamburger-menu pt-4">
+    <input id="mobile-nav-btn" type="checkbox" class="checked-nav" checked />
+  </label>
+  <div class="mobile-nav flex md:flex-row flex-col gap-4 md:items-center">
+    <a href="/about" class="font-medium hover:underline">About</a>
+    <a href="/pricing" class="font-medium hover:underline">Pricing</a>
+    <a href="/faq" class="font-medium hover:underline">FAQ</a>
+    <a href="/blog" class="font-medium hover:underline">Blog</a>
+    <a
+      href="https://and.fm/waitlist"
+      target="_blank"
+      class="border-2 border-white bg-transparent text-white hover:bg-white hover:text-black px-4 py-2"
+    >
+      Sign Up
+    </a>
+    <a
+      href="https://and.fm/login"
+      target="_blank"
+      class="bg-white border-2 border-white text-black hover:bg-gray-100 px-4 py-2"
+    >
+      Log In
+    </a>
+  </div>
+</nav>
+
+<script>
+  let isMobileNavOpen = false;
+
+  const mobileNav = document.getElementById("mobile-nav") as HTMLLabelElement;
+  const mobileNavBtn = document.getElementById(
+    "mobile-nav-btn"
+  ) as HTMLInputElement;
+
+  mobileNav.addEventListener("mousedown", (e) => {
+    if (isMobileNavOpen) {
+      isMobileNavOpen = false;
+      mobileNavBtn.classList.remove("checked-nav");
+    } else {
+      isMobileNavOpen = true;
+      mobileNavBtn.classList.add("checked-nav");
+    }
+  });
+</script>

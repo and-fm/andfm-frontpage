@@ -1,9 +1,8 @@
 ---
-import Logo from "../assets/logo.png";
-import { Image } from "astro:assets";
 import Bluesky from "../components/icons/Bluesky.astro";
 import Instagram from "../components/icons/Instagram.astro";
 import Discord from "../components/icons/Discord.astro";
+import Navbar from "@components/Navbar.astro";
 
 interface Props {
   pageTitle: string;
@@ -95,45 +94,8 @@ const title = pageTitle === "Home" ? siteTitle : `${pageTitle} | ${siteTitle}`;
     <div style="display: contents">
       <div class="flex flex-col gap-12 justify-between min-h-screen text-black">
         <div class="flex flex-col gap-12">
-          <header class="bg-surface-600 text-white p-4">
-            <nav
-              class="container md:px-12 mx-auto flex md:flex-row flex-col gap-4 md:items-center justify-between"
-            >
-              <a href="/" class="flex flex-row items-center gap-4">
-                <Image
-                  src={Logo}
-                  width="128"
-                  height="128"
-                  alt="and.fm logo"
-                  loading="eager"
-                  class="object-contain w-12 h-12"
-                />
-                <span class="text-3xl font-bold"> and.fm </span>
-              </a>
-              <div class="flex md:flex-row flex-col gap-4 md:items-center">
-                <a href="/about" class="font-medium hover:underline">About</a>
-                <a href="/pricing" class="font-medium hover:underline"
-                  >Pricing</a
-                >
-                <a href="/faq" class="font-medium hover:underline">FAQ</a>
-                <a href="/blog" class="font-medium hover:underline">Blog</a>
-                <a
-                  href="https://and.fm/waitlist"
-                  target="_blank"
-                  class="border-2 border-white bg-transparent text-white hover:bg-white hover:text-black px-4 py-2"
-                >
-                  Sign Up
-                </a>
-                <a
-                  href="https://and.fm/login"
-                  target="_blank"
-                  class="bg-white border-2 border-white text-black hover:bg-gray-100 px-4 py-2"
-                >
-                  Log In
-                </a>
-              </div>
-            </nav>
-          </header>
+          <header class="bg-surface-600 text-white p-4"><Navbar /></header>
+
           <slot />
         </div>
         <footer class="bg-black text-white p-8">
