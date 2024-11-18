@@ -1,68 +1,58 @@
 ---
+import Main from "@components/Main.astro";
 import MainLayout from "../../layouts/mainLayout.astro";
-import type { Post, Media, Author } from "../../../types/payload-types"
-import Container from "../../components/Container.astro";
-import ImageRenderer from "../../components/ImageRenderer.astro";
+import { getCollection } from "astro:content";
+import ArrowRight from "@components/icons/ArrowRight.astro";
 
-import { isPostVisible } from "../../utils/contentUtils"
-import { cmsFetch } from "../../utils/requests";
-
-const res = await cmsFetch(import.meta.env.PAYLOAD_CMS_URL + "/api/posts?limit=40")
-
-const defaultImage = await (await cmsFetch(import.meta.env.PAYLOAD_CMS_URL + "/api/media/64da22c9d52c357fdc4da137")).json() as Media
-const defaultThumbnail = defaultImage?.sizes?.sixteenByNineMedium
-
-const postJson = await res.json()
-const posts = postJson.docs as Post[]
-
-if (posts == null) {
-    console.error("No posts found, could be an error during build step, maybe CMS isnt hooked up? Maybe posts dont have read access? Check (from Dave)")
-}
-
+const blogEntries = await getCollection("blog");
 ---
 
-<MainLayout pageTitle="All Posts" pageDescription="All blog posts written by the team behind AND">
-    <Container>
-        <h1 class="mb-4 text-4xl font-bold text-white">All Posts</h1>
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-            {posts && posts?.some(isPostVisible) ? posts
-                .filter(isPostVisible) // for draft posts
-                .map((post: Post) => {
-                    const author = post.author as Author
-                    const banner = post.banner as Media
-                    const draft = post.status === "draft"
-
-                    const smallPostTitle = post.title.length > 80 ? post.title.substring(0, 80) + "..." : post.title
-
-                    const href = "/blog/" + post.slug
-                    
-                    return (
-                        <article class="">
-                            <a href={href}>
-                                {
-                                    banner ? <ImageRenderer class="rounded-lg"
-                                    src={banner.sizes?.sixteenByNineMedium?.url} 
-                                    alt={banner?.alt || ""}
-                                    width={banner.sizes?.sixteenByNineMedium?.width} 
-                                    height={banner.sizes?.sixteenByNineMedium?.height} />  
-                                    : <ImageRenderer class="rounded-lg"
-                                        src={defaultThumbnail?.url} 
-                                        alt={""}
-                                        width={defaultImage?.sizes?.sixteenByNineMedium?.width} 
-                                        height={defaultImage?.sizes?.sixteenByNineMedium?.height} />
-                                }
-                                {draft ? <p class="w-full text-center text-orange-600">Draft Post</p> : null}
-                                <h2 class="mt-4 mb-4 text-xl font-bold leading-tight text-center text-white">
-                                    {smallPostTitle}
-                                </h2>
-                                <p class="mb-4 font-light text-center text-zinc-400">{post.description}</p>
-                            </a>
-                        </article>
-                    )
-            }) : <div>
-                <p class="text-zinc-300">No posts here. Check back sometime soon!</p>
-                </div>
-            }
+<MainLayout pageTitle="About" pageDescription="">
+  <Main>
+    <div class="mb-12">
+      <h1 class="mb-16 text-6xl font-bold">Blog</h1>
+      <div class="text-xl flex flex-col gap-2">
+        <div class="space-y-12">
+          {
+            blogEntries
+              .sort((a, b) =>
+                a.data.date.getTime() < b.data.date.getTime() ? 1 : -1
+              )
+              .map((entry) => {
+                const blogDate = entry.data.date;
+                blogDate.setHours(blogDate.getHours() + 5);
+                const niceDate = blogDate.toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                });
+                return (
+                  <article class="group border-t-2 border-black pt-8 first:border-t-0 first:pt-0">
+                    <div class="grid grid-cols-1 md:grid-cols-[1fr,2fr] gap-8">
+                      <div class="space-y-1">
+                        <p class="text-sm">{niceDate}</p>
+                      </div>
+                      <div class="space-y-4">
+                        <h2 class="text-4xl font-bold group-hover:underline">
+                          <a href={`/blog/${entry.slug}`}>{entry.data.title}</a>
+                        </h2>
+                        <p class="text-xl text-gray-600">
+                          {entry.data.description}
+                        </p>
+                        <a
+                          href={`/blog/${entry.slug}`}
+                          class="inline-flex items-center text-black hover:underline gap-2"
+                        >
+                          Read more <ArrowRight />
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })
+          }
         </div>
-    </Container> 
+      </div>
+    </div>
+  </Main>
 </MainLayout>

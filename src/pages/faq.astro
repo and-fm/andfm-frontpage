@@ -1,29 +1,22 @@
 ---
+import Main from "../components/Main.astro";
+import Prose from "../components/Prose.astro";
 import MainLayout from "../layouts/mainLayout.astro";
-import type { Faq } from "../../types/payload-types"
-import Container from "../components/Container.astro";
-import { cmsFetch } from "../utils/requests";
-
-
-const faqData = await cmsFetch(import.meta.env.PAYLOAD_CMS_URL + "/api/globals/faq")
-
-const { questions } = await faqData.json() as Faq
+import { Content as FAQContent } from "./faq.md";
 ---
 
-<MainLayout pageTitle="FAQ" pageDescription="Here are some frequently asked questions answered by the AND team!">
-    <Container>
-        <h1 class="mb-4 text-4xl font-extrabold text-white">Frequently Asked Questions</h1>
-        <div class="flex flex-col gap-2">
-            {
-            questions?.map((question) => {
-                return (
-                    <div class="mb-8">
-                        <h2 class="mb-2 text-xl font-semibold text-white">{question.question}</h2>
-                        <p class="text-zinc-400">{question.answer}</p>
-                        </div>
-                    )
-                }) || <p class="text-zinc-400">No questions found</p>
-            }
-        </div>
-    </Container>
+<MainLayout
+  pageTitle="FAQ"
+  pageDescription="Here are some frequently asked questions answered by the AND team!"
+>
+  <Main>
+    <div class="mb-12 text-black">
+      <h1 class="mb-12 text-4xl font-extrabold">Frequently Asked Questions</h1>
+      <div class="flex flex-col gap-2">
+        <Prose class="prose-h2:m-0">
+          <FAQContent />
+        </Prose>
+      </div>
+    </div>
+  </Main>
 </MainLayout>

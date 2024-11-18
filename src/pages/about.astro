@@ -1,0 +1,28 @@
+---
+import Main from "../components/Main.astro";
+import MainLayout from "../layouts/mainLayout.astro";
+---
+
+<MainLayout pageTitle="About" pageDescription="">
+  <Main>
+    <div class="mb-12">
+      <h1 class="mb-4 text-6xl font-bold">hello, we're and.fm</h1>
+      <div class="text-xl flex flex-col gap-2">
+        <p>
+          we're building the world's best artist platform, starting with
+          distribution.
+        </p>
+        <p>and.fm is the world's only non-profit music distributor.</p>
+        <p>
+          we're invite only while we grow, join our <a
+            class="underline"
+            target="_blank"
+            href="https://and.fm/waitlist">waitlist</a
+          > & <a class="underline" target="_blank" href="https://and.fm/discord"
+            >discord</a
+          > for updates first.
+        </p>
+      </div>
+    </div>
+  </Main>
+</MainLayout>
