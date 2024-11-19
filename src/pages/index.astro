@@ -61,12 +61,24 @@ import MainLayout from "../layouts/mainLayout.astro";
     <div
       class="mt-12 border-4 border-black bg-white p-8 shadow-[8px_8px_0_0_rgba(0,0,0,1)]"
     >
-      <h2 class="mb-4 text-3xl font-bold">Join Our Newsletter</h2>
+      <h2 class="mb-4 text-3xl font-bold">Join Our Community</h2>
       <p class="mb-4">
         Stay updated with <strong>and.fm</strong>'s progress towards a better
         future for rightsholders.
       </p>
-      <form class="flex gap-2 md:flex-row flex-col">
+      <div class="flex gap-2 md:flex-row flex-col">
+        <a
+          href="https://and.fm/discord"
+          class="bg-black text-white hover:bg-gray-800 px-4 py-2 flex-grow text-center"
+          >Join The Discord</a
+        >
+        <a
+          href="https://and.fm/bluesky"
+          class="bg-black text-white hover:bg-gray-800 px-4 py-2 flex-grow text-center"
+          >Follow on Bluesky</a
+        >
+      </div>
+      <!-- <form class="flex gap-2 md:flex-row flex-col">
         <input
           class="md:flex-grow border-2 border-black bg-transparent px-4 py-2"
           placeholder="Enter your email"
@@ -76,7 +88,7 @@ import MainLayout from "../layouts/mainLayout.astro";
         <button disabled class="bg-black text-white hover:bg-gray-800 px-4 py-2"
           >Subscribe</button
         >
-      </form>
+      </form> -->
     </div>
   </Main>
 </MainLayout>
