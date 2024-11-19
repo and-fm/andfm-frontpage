@@ -1,12 +1,12 @@
-## What is AND?
+## What is and.fm?
 
 We are creating an industry leading music distribution platform. Delivering maximum value at reasonable costs without artificial limits.
 
 ## How can I sign up?
 
-We're invite only for now while we grow, but you can register your interest on the homepage.
+We're invite only for now while we grow, but you can sign up to our [waitlist](https://and.fm/waitlist).
 
-## Who runs AND?
+## Who runs and.fm?
 
 Aaron, Nick and Dave. Between us we have a wealth of experience designing & building software. Aaron & Nick have ran record labels, and Dave produces music.
 
