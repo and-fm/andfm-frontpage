@@ -15,6 +15,7 @@
     "astro": "^3.0.10",
     "astro-compress": "^2.0.5",
     "astro-critters": "^2.0.4",
+    "astro-single-file": "^1.1.0",
     "sharp": "^0.32.4",
     "tailwindcss": "^3.0.24"
   },
