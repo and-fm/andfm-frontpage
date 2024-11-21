@@ -9,61 +9,7 @@ import Sun from "./icons/Sun.astro";
   title="Toggles light & dark"
   aria-label="auto"
   aria-live="polite"
-  onclick="switchTheme()"
 >
   <Sun size="1.5em" class="theme-sun" />
   <Moon size="1.5em" class="theme-moon hidden" />
 </button>
-
-<script is:inline>
-  let isDark = false;
-  const themeSun = document.querySelector(".theme-sun");
-  const themeMoon = document.querySelector(".theme-moon");
-
-  function switchTheme() {
-    if (isDark) {
-      setToLight();
-    } else {
-      setToDark();
-    }
-  }
-
-  function setToLight() {
-    document.firstElementChild.classList.remove("dark");
-    themeSun.classList.remove("hidden");
-    themeMoon.classList.add("hidden");
-    isDark = false;
-    window.localStorage.setItem("darkTheme", false);
-    unhideBody();
-  }
-
-  function setToDark() {
-    document.firstElementChild.classList.add("dark");
-    themeSun.classList.add("hidden");
-    themeMoon.classList.remove("hidden");
-    isDark = true;
-    window.localStorage.setItem("darkTheme", true);
-    unhideBody();
-  }
-
-  function unhideBody() {
-    setTimeout(() => {
-      document.body.classList.remove("hidden");
-    }, 100);
-  }
-
-  const darkTheme = window.localStorage.getItem("darkTheme");
-
-  if (darkTheme === "true") {
-    setToDark();
-  } else {
-    setToLight();
-  }
-
-  // sync with system changes
-  window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", ({ matches: isDark }) => {
-      isDark ? setToDark() : setToLight();
-    });
-</script>
