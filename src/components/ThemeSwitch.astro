@@ -34,7 +34,7 @@ import Sun from "./icons/Sun.astro";
     themeMoon.classList.add("hidden");
     isDark = false;
     window.localStorage.setItem("darkTheme", false);
-    document.body.classList.remove("hidden");
+    unhideBody();
   }
 
   function setToDark() {
@@ -43,7 +43,13 @@ import Sun from "./icons/Sun.astro";
     themeMoon.classList.remove("hidden");
     isDark = true;
     window.localStorage.setItem("darkTheme", true);
-    document.body.classList.remove("hidden");
+    unhideBody();
+  }
+
+  function unhideBody() {
+    setTimeout(() => {
+      document.body.classList.remove("hidden");
+    }, 100);
   }
 
   const darkTheme = window.localStorage.getItem("darkTheme");
