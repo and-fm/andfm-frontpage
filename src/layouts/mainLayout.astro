@@ -90,14 +90,13 @@ const title = pageTitle === "Home" ? siteTitle : `${pageTitle} | ${siteTitle}`;
       .body-texture {
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='noise' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='8' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E");
       }
-
-      .body-color {
-        @apply bg-[#fffbef] dark:bg-[#242424] body-texture dark:bg-none;
-      }
     </style>
   </head>
 
-  <body class="body-color" class:list={[className]}>
+  <body
+    class="bg-[#fffbef] dark:bg-[#242424] dark:!bg-none body-texture"
+    class:list={[className]}
+  >
     <div style="display: contents">
       <div class="flex flex-col gap-12 justify-between min-h-screen text-black">
         <div class="flex flex-col gap-12">

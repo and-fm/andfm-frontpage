@@ -24,10 +24,6 @@ import { Image } from "astro:assets";
     height: max-content;
   }
 
-  .hamburger-menu {
-    @apply md:hidden !important;
-  }
-
   .hamburger-menu::before,
   .hamburger-menu::after,
   .hamburger-menu input {
@@ -94,7 +90,7 @@ import { Image } from "astro:assets";
     />
     <span class="text-3xl font-bold"> and.fm </span>
   </a>
-  <label id="mobile-nav" class="hamburger-menu pt-4">
+  <label id="mobile-nav" class="hamburger-menu md:!hidden pt-4">
     <input id="mobile-nav-btn" type="checkbox" checked />
   </label>
   <div class="mobile-nav flex md:flex-row flex-col gap-4 md:items-center">

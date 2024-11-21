@@ -5,9 +5,7 @@ import { defineConfig } from "astro/config";
 import compress from "astro-compress";
 import critters from "astro-critters";
 
-import singleFile from "astro-single-file";
-
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), prefetch(), critters(), compress(), singleFile()]
+  integrations: [tailwind(), prefetch(), critters(), compress()],
 });
