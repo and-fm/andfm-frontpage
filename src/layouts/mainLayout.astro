@@ -95,59 +95,6 @@ const title = pageTitle === "Home" ? siteTitle : `${pageTitle} | ${siteTitle}`;
         @apply bg-[#fffbef] dark:bg-[#242424] body-texture dark:bg-none;
       }
     </style>
-
-    <script>
-      let isDark = false;
-      const themeSun = document.querySelector(".theme-sun");
-      const themeMoon = document.querySelector(".theme-moon");
-
-      document.querySelector(".theme-toggle").addEventListener("click", () => {
-        if (isDark) {
-          setToLight();
-        } else {
-          setToDark();
-        }
-      });
-
-      function setToLight() {
-        document.firstElementChild.classList.remove("dark");
-        themeSun.classList.remove("hidden");
-        themeMoon.classList.add("hidden");
-        isDark = false;
-        window.localStorage.setItem("darkTheme", false);
-        // unhideBody();
-      }
-
-      function setToDark() {
-        document.firstElementChild.classList.add("dark");
-        themeSun.classList.add("hidden");
-        themeMoon.classList.remove("hidden");
-        isDark = true;
-        window.localStorage.setItem("darkTheme", true);
-        // unhideBody();
-      }
-
-      function unhideBody() {
-        setTimeout(() => {
-          document.body.classList.remove("hidden");
-        }, 100);
-      }
-
-      const darkTheme = window.localStorage.getItem("darkTheme");
-
-      if (darkTheme === "true") {
-        setToDark();
-      } else {
-        setToLight();
-      }
-
-      // sync with system changes
-      window
-        .matchMedia("(prefers-color-scheme: dark)")
-        .addEventListener("change", ({ matches: isDark }) => {
-          isDark ? setToDark() : setToLight();
-        });
-    </script>
   </head>
 
   <body class="body-color" class:list={[className]}>
@@ -159,6 +106,64 @@ const title = pageTitle === "Home" ? siteTitle : `${pageTitle} | ${siteTitle}`;
           >
             <Navbar />
             <span><ThemeSwitch /></span>
+            <script is:inline>
+              let isDark = false;
+              const themeSun = document.querySelector(
+                "#theme-toggle .theme-sun"
+              );
+              const themeMoon = document.querySelector(
+                "#theme-toggle .theme-moon"
+              );
+
+              const darkTheme = window.localStorage.getItem("darkTheme");
+
+              if (darkTheme === "true") {
+                setToDark();
+              } else {
+                setToLight();
+              }
+
+              // sync with system changes
+              window
+                .matchMedia("(prefers-color-scheme: dark)")
+                .addEventListener("change", ({ matches: isDark }) => {
+                  isDark ? setToDark() : setToLight();
+                });
+
+              document
+                .getElementById("theme-toggle")
+                .addEventListener("click", () => {
+                  if (isDark) {
+                    setToLight();
+                  } else {
+                    setToDark();
+                  }
+                });
+
+              function setToLight() {
+                document.documentElement.classList.remove("dark");
+                themeSun.classList.remove("hidden");
+                themeMoon.classList.add("hidden");
+                isDark = false;
+                window.localStorage.setItem("darkTheme", false);
+                // unhideBody();
+              }
+
+              function setToDark() {
+                document.documentElement.classList.add("dark");
+                themeSun.classList.add("hidden");
+                themeMoon.classList.remove("hidden");
+                isDark = true;
+                window.localStorage.setItem("darkTheme", true);
+                // unhideBody();
+              }
+
+              function unhideBody() {
+                setTimeout(() => {
+                  document.body.classList.remove("hidden");
+                }, 100);
+              }
+            </script>
           </header>
           <slot />
         </div>
