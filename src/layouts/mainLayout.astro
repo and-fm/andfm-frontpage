@@ -114,3 +114,18 @@ const title = pageTitle === "Home" ? siteTitle : `${pageTitle} | ${siteTitle}`;
     </div>
   </body>
 </html>
+
+<script is:inline>
+  const darkTheme = window.localStorage.getItem("darkTheme");
+
+  if (darkTheme === "true") {
+    setToDark();
+  }
+
+  // sync with system changes
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", ({ matches: isDark }) => {
+      isDark ? setToDark() : setToLight();
+    });
+</script>
