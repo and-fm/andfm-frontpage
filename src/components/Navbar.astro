@@ -115,13 +115,11 @@ import { Image } from "astro:assets";
   </div>
 </nav>
 
-<script>
+<script is:inline>
   let isMobileNavOpen = false;
 
-  const mobileNav = document.getElementById("mobile-nav") as HTMLLabelElement;
-  const mobileNavBtn = document.getElementById(
-    "mobile-nav-btn"
-  ) as HTMLInputElement;
+  const mobileNav = document.getElementById("mobile-nav");
+  const mobileNavBtn = document.getElementById("mobile-nav-btn");
 
   mobileNav.addEventListener("mousedown", (e) => {
     if (isMobileNavOpen) {
