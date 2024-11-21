@@ -145,7 +145,6 @@ const title = pageTitle === "Home" ? siteTitle : `${pageTitle} | ${siteTitle}`;
                 themeMoon.classList.add("hidden");
                 isDark = false;
                 window.localStorage.setItem("darkTheme", false);
-                // unhideBody();
               }
 
               function setToDark() {
@@ -154,13 +153,6 @@ const title = pageTitle === "Home" ? siteTitle : `${pageTitle} | ${siteTitle}`;
                 themeMoon.classList.remove("hidden");
                 isDark = true;
                 window.localStorage.setItem("darkTheme", true);
-                // unhideBody();
-              }
-
-              function unhideBody() {
-                setTimeout(() => {
-                  document.body.classList.remove("hidden");
-                }, 50);
               }
             </script>
           </header>
