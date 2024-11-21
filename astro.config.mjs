@@ -7,5 +7,8 @@ import critters from "astro-critters";
 
 // https://astro.build/config
 export default defineConfig({
+  build: {
+    inlineStylesheets: "always",
+  },
   integrations: [tailwind(), prefetch(), critters(), compress()],
 });
