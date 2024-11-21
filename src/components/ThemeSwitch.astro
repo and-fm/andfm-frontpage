@@ -30,6 +30,7 @@ import Sun from "./icons/Sun.astro";
 
   function setToLight() {
     document.firstElementChild.classList.remove("dark");
+    document.body.classList.remove("hidden");
     themeSun.classList.remove("hidden");
     themeMoon.classList.add("hidden");
     isDark = false;
@@ -38,9 +39,25 @@ import Sun from "./icons/Sun.astro";
 
   function setToDark() {
     document.firstElementChild.classList.add("dark");
+    document.body.classList.remove("hidden");
     themeSun.classList.add("hidden");
     themeMoon.classList.remove("hidden");
     window.localStorage.setItem("darkTheme", true);
     isDark = true;
   }
+
+  const darkTheme = window.localStorage.getItem("darkTheme");
+
+  if (darkTheme === "true") {
+    setToDark();
+  } else {
+    setToLight();
+  }
+
+  // sync with system changes
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", ({ matches: isDark }) => {
+      isDark ? setToDark() : setToLight();
+    });
 </script>
