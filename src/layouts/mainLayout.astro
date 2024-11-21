@@ -115,7 +115,7 @@ const title = pageTitle === "Home" ? siteTitle : `${pageTitle} | ${siteTitle}`;
         themeMoon.classList.add("hidden");
         isDark = false;
         window.localStorage.setItem("darkTheme", false);
-        unhideBody();
+        // unhideBody();
       }
 
       function setToDark() {
@@ -124,7 +124,7 @@ const title = pageTitle === "Home" ? siteTitle : `${pageTitle} | ${siteTitle}`;
         themeMoon.classList.remove("hidden");
         isDark = true;
         window.localStorage.setItem("darkTheme", true);
-        unhideBody();
+        // unhideBody();
       }
 
       function unhideBody() {
@@ -150,7 +150,7 @@ const title = pageTitle === "Home" ? siteTitle : `${pageTitle} | ${siteTitle}`;
     </script>
   </head>
 
-  <body class="body-color hidden" class:list={[className]}>
+  <body class="body-color" class:list={[className]}>
     <div style="display: contents">
       <div class="flex flex-col gap-12 justify-between min-h-screen text-black">
         <div class="flex flex-col gap-12">
