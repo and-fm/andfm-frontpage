@@ -87,23 +87,17 @@ const title = pageTitle === "Home" ? siteTitle : `${pageTitle} | ${siteTitle}`;
     <meta property="twitter:image" content="https://www.and.fm/logo.png" />
 
     <style is:global>
-      .body-color {
-        background-color: rgb(255 251 239 / var(--tw-bg-opacity, 1));
+      .body-texture {
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='noise' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='8' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E");
       }
 
-      .body-color:where(.dark, .dark *) {
-        background-color: rgb(36 36 36 / var(--tw-bg-opacity, 1));
-        background-image: none;
-      }
-
-      main {
-        @apply dark:text-white;
+      .body-color {
+        @apply bg-[#fffbef] dark:bg-[#242424] body-texture dark:bg-none;
       }
     </style>
   </head>
 
-  <body class="body-color" class:list={[className]}>
+  <body class="body-color hidden" class:list={[className]}>
     <div style="display: contents">
       <div class="flex flex-col gap-12 justify-between min-h-screen text-black">
         <div class="flex flex-col gap-12">
@@ -152,7 +146,7 @@ const title = pageTitle === "Home" ? siteTitle : `${pageTitle} | ${siteTitle}`;
                 themeMoon.classList.add("hidden");
                 isDark = false;
                 window.localStorage.setItem("darkTheme", false);
-                // unhideBody();
+                unhideBody();
               }
 
               function setToDark() {
@@ -161,13 +155,13 @@ const title = pageTitle === "Home" ? siteTitle : `${pageTitle} | ${siteTitle}`;
                 themeMoon.classList.remove("hidden");
                 isDark = true;
                 window.localStorage.setItem("darkTheme", true);
-                // unhideBody();
+                unhideBody();
               }
 
               function unhideBody() {
                 setTimeout(() => {
                   document.body.classList.remove("hidden");
-                }, 100);
+                }, 50);
               }
             </script>
           </header>
