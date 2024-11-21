@@ -30,20 +30,20 @@ import Sun from "./icons/Sun.astro";
 
   function setToLight() {
     document.firstElementChild.classList.remove("dark");
-    document.body.classList.remove("hidden");
     themeSun.classList.remove("hidden");
     themeMoon.classList.add("hidden");
     isDark = false;
     window.localStorage.setItem("darkTheme", false);
+    document.body.classList.remove("hidden");
   }
 
   function setToDark() {
     document.firstElementChild.classList.add("dark");
-    document.body.classList.remove("hidden");
     themeSun.classList.add("hidden");
     themeMoon.classList.remove("hidden");
-    window.localStorage.setItem("darkTheme", true);
     isDark = true;
+    window.localStorage.setItem("darkTheme", true);
+    document.body.classList.remove("hidden");
   }
 
   const darkTheme = window.localStorage.getItem("darkTheme");
