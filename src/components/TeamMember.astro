@@ -1,0 +1,29 @@
+---
+import ImageRenderer from "./ImageRenderer.astro";
+interface Props {
+  name: string;
+  title: string;
+  about: string;
+  profileImg: ImageMetadata;
+}
+const { name, title, about, profileImg }: Props = Astro.props;
+---
+
+<div class="flex gap-2">
+  <div class="flex flex-row md:flex-col gap-2">
+    <ImageRenderer
+      width="400px"
+      height="400px"
+      class="w-48 h-48"
+      alt=`${name} profile photo`
+      src={profileImg}
+    />
+    <div class="flex flex-col">
+      <span class="text-xl font-bold">{name}</span>
+      <div class="flex flex-col gap-2">
+        <p class="font-light">{title}</p>
+        <p>{about}</p>
+      </div>
+    </div>
+  </div>
+</div>
