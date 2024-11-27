@@ -1,5 +1,7 @@
+import defaultTheme from "tailwindcss/defaultTheme";
+
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   darkMode: "selector",
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
@@ -17,6 +19,9 @@ module.exports = {
         "surface-700": "rgb(61, 61, 61)",
         "surface-800": "rgb(41, 41, 41)",
         "surface-900": "rgb(20, 20, 20)",
+      },
+      fontFamily: {
+        Noord: ["Noord", ...defaultTheme.fontFamily.sans],
       },
     },
   },
