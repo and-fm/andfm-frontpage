@@ -12,14 +12,15 @@ import Card from "@components/Card.astro";
   <Main>
     <div class="mb-12 text-center">
       <h1 class="mb-4 text-6xl font-bold">
-        An Artist's Home Base.
+        and.fm
         <br />
         <span class="">
-          <span>All You Need.</span>
+          <span>everything in one</span>
         </span>
       </h1>
-      <p class="mb-8 text-xl">No limits, no fuss, 100% transparent.</p>
-      <!-- <div class="flex justify-center space-x-4">
+      <p class="mb-8 text-xl">we're building a better music business</p>
+      {
+        /*  <div class="flex justify-center space-x-4">
         <button class="bg-black text-white hover:bg-gray-800 px-4 py-2">
           Start Uploading
         </button>
@@ -28,32 +29,39 @@ import Card from "@components/Card.astro";
         >
           Learn More
         </button>
-      </div> -->
+      </div>*/
+      }
     </div>
     <div class="grid gap-8 md:grid-cols-3">
       <Card>
-        <h2 class="mb-2 text-2xl font-bold">Truly Unlimited</h2>
+        <h2 class="mb-2 text-2xl font-bold">What do we do?</h2>
         <p>
-          No limits on number of tracks, artists, albums, collaborators, & etc.
+          we're not just another distributor. we're developing backbone
+          infrastructure to run your music business.
         </p>
       </Card>
       <Card class="bg-green-300">
-        <h2 class="mb-2 text-2xl font-bold">Fast Distribution</h2>
-        <p>Your tracks get delivered to stores within 2 days of submission.</p>
+        <h2 class="mb-2 text-2xl font-bold">Distribution</h2>
+        <p>
+          get access to efficient digital distribution and see your release on
+          stores within two days. no artificial limits.
+        </p>
       </Card>
       <Card class="bg-red-300">
         <!-- <Play class="mb-4 h-12 w-12" /> -->
-        <h2 class="mb-2 text-2xl font-bold">Not For Profit</h2>
+        <h2 class="mb-2 text-2xl font-bold">Not for Profit</h2>
         <p>
-          All excess "profits" are reinvested to make and.fm better for all.
+          and.fm has no external investment and is owned by our members. excess
+          profit is fully reinvested.
         </p>
       </Card>
     </div>
     <Card class="mt-12 bg-yellow-100 dark:bg-surface-700 dark:text-white">
-      <h2 class="mb-4 text-3xl font-bold">Join Our Community</h2>
+      <h2 class="mb-4 text-3xl font-bold">Interested?</h2>
       <p class="mb-4">
-        Stay updated with <strong>and.fm</strong>'s progress towards a better
-        future for rightsholders.
+        We're invite only while we grow. Stay updated with <strong
+          >and.fm</strong
+        >'s progress towards open membership.
       </p>
       <div class="flex gap-2 md:flex-row flex-col">
         <a
@@ -69,7 +77,8 @@ import Card from "@components/Card.astro";
           >Follow on Bluesky</a
         >
       </div>
-      <!-- <form class="flex gap-2 md:flex-row flex-col">
+      {
+        /*  <form class="flex gap-2 md:flex-row flex-col">
         <input
           class="md:flex-grow border-2 border-black bg-transparent px-4 py-2"
           placeholder="Enter your email"
@@ -79,7 +88,8 @@ import Card from "@components/Card.astro";
         <button disabled class="bg-black text-white hover:bg-gray-800 px-4 py-2"
           >Subscribe</button
         >
-      </form> -->
+      </form> */
+      }
     </Card>
   </Main>
 </MainLayout>
