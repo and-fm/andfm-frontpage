@@ -89,16 +89,37 @@ const title = pageTitle === "Home" ? siteTitle : `${pageTitle} | ${siteTitle}`;
       content="https://www.and.fm/logo-small.png"
     />
 
-    <style is:global>
-      @font-face {
-        font-family: "Noord";
-        src:
-          url("/fonts/Noord-Regular.woff2") format("woff2"),
-          url("/fonts/Noord-Regular.woff") format("woff"),
-          url("/fonts/Noord-Regular.ttf") format("truetype"),
-          url("/fonts/Noord-Regular.otf") format("opentype");
-      }
+    <!-- Custom Fonts -->
+    <link
+      rel="preload"
+      href="/fonts/Noord-Regular.woff2"
+      as="Noord"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Noord-Regular.woff"
+      as="Noord"
+      type="font/woff"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Noord-Regular.ttf"
+      as="Noord"
+      type="font/truetype"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Noord-Regular.otf"
+      as="Noord"
+      type="font/opentype"
+      crossorigin
+    />
 
+    <style is:global>
       .body-texture {
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='noise' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='8' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.10'/%3E%3C/svg%3E");
       }
