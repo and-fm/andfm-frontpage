@@ -71,7 +71,9 @@ import ThemeSwitch from "./ThemeSwitch.astro";
       display: none;
     }
 
-    #mobile-nav-hamburger:has(#mobile-nav-lbl > #mobile-nav-btn.checked-nav)
+    #header-wrapper:has(
+        #mobile-nav-hamburger > #mobile-nav-lbl > #mobile-nav-btn.checked-nav
+      )
       + .mobile-nav {
       display: flex;
     }
@@ -81,25 +83,32 @@ import ThemeSwitch from "./ThemeSwitch.astro";
 <nav
   class="container md:px-12 mx-auto flex lg:flex-row flex-col gap-4 md:items-center justify-between"
 >
-  <a href="/" class="flex flex-row items-center gap-4">
-    <Image
-      src={Logo}
-      width="128"
-      height="128"
-      alt="and.fm logo"
-      loading="eager"
-      class="object-contain w-12 h-12"
-    />
-    <span class="text-4xl font-bold font-Noord"> and.fm </span>
-  </a>
   <div
-    id="mobile-nav-hamburger"
-    class="flex flex-row justify-between items-center pt-2"
+    id="header-wrapper"
+    class="flex flex-row items-center gap-4 justify-between"
   >
-    <label id="mobile-nav-lbl" class="hamburger-menu md:!hidden flex-grow">
-      <input id="mobile-nav-btn" type="checkbox" checked />
-    </label>
-    <ThemeSwitch class="md:!hidden" />
+    <a href="/">
+      <div class="flex gap-4 items-center">
+        <Image
+          src={Logo}
+          width="128"
+          height="128"
+          alt="and.fm logo"
+          loading="eager"
+          class="object-contain w-12 h-12"
+        />
+        <span class="text-4xl font-bold font-Noord"> and.fm </span>
+      </div>
+    </a>
+    <div
+      id="mobile-nav-hamburger"
+      class="flex flex-row justify-between items-center pt-2 gap-4"
+    >
+      <label id="mobile-nav-lbl" class="hamburger-menu md:!hidden flex-grow">
+        <input id="mobile-nav-btn" type="checkbox" checked />
+      </label>
+      <ThemeSwitch class="md:!hidden" />
+    </div>
   </div>
   <div class="mobile-nav flex md:flex-row flex-col gap-4 md:items-center">
     <a href="/about" class="font-medium hover:underline">About</a>
