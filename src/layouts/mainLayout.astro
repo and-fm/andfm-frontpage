@@ -93,33 +93,42 @@ const title = pageTitle === "Home" ? siteTitle : `${pageTitle} | ${siteTitle}`;
     <link
       rel="preload"
       href="/fonts/Noord-Regular.woff2"
-      as="Noord"
+      as="font"
       type="font/woff2"
       crossorigin
     />
     <link
       rel="preload"
       href="/fonts/Noord-Regular.woff"
-      as="Noord"
+      as="font"
       type="font/woff"
       crossorigin
     />
     <link
       rel="preload"
       href="/fonts/Noord-Regular.ttf"
-      as="Noord"
-      type="font/truetype"
+      as="font"
+      type="font/ttf"
       crossorigin
     />
     <link
       rel="preload"
       href="/fonts/Noord-Regular.otf"
-      as="Noord"
-      type="font/opentype"
+      as="font"
+      type="font/otf"
       crossorigin
     />
 
     <style is:global>
+      @font-face {
+        font-family: "Noord";
+        src:
+          url("/fonts/Noord-Regular.woff2") format("woff2"),
+          url("/fonts/Noord-Regular.woff") format("woff"),
+          url("/fonts/Noord-Regular.ttf") format("truetype"),
+          url("/fonts/Noord-Regular.otf") format("opentype");
+      }
+
       .body-texture {
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='noise' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='8' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.10'/%3E%3C/svg%3E");
       }
@@ -127,6 +136,10 @@ const title = pageTitle === "Home" ? siteTitle : `${pageTitle} | ${siteTitle}`;
       @media (max-width: 767px) {
         .theme-switch {
           @apply px-4 py-9;
+        }
+
+        .desktop-theme-toggle {
+          display: none;
         }
       }
     </style>
@@ -143,14 +156,22 @@ const title = pageTitle === "Home" ? siteTitle : `${pageTitle} | ${siteTitle}`;
             class="sticky top-0 flex flex-row md:items-center bg-black text-white p-4"
           >
             <Navbar />
-            <span class="theme-switch"><ThemeSwitch /></span>
+            <span class="desktop-theme-toggle"
+              ><ThemeSwitch id="desktop-theme-toggle" /></span
+            >
             <script is:inline>
               let isDark = false;
               const themeSun = document.querySelector(
                 "#theme-toggle .theme-sun"
               );
+              const themeSunDesktop = document.querySelector(
+                "#desktop-theme-toggle .theme-sun"
+              );
               const themeMoon = document.querySelector(
                 "#theme-toggle .theme-moon"
+              );
+              const themeMoonDesktop = document.querySelector(
+                "#desktop-theme-toggle .theme-moon"
               );
 
               const darkTheme = window.localStorage.getItem("darkTheme");
@@ -159,6 +180,16 @@ const title = pageTitle === "Home" ? siteTitle : `${pageTitle} | ${siteTitle}`;
                 setToDark();
               } else {
                 setToLight();
+              }
+
+              // set to system mode on load if not set in localStorage
+              if (darkTheme === undefined || darkTheme === null) {
+                if (
+                  window.matchMedia &&
+                  window.matchMedia("(prefers-color-scheme: dark)").matches
+                ) {
+                  setToDark();
+                }
               }
 
               // sync with system changes
@@ -170,18 +201,26 @@ const title = pageTitle === "Home" ? siteTitle : `${pageTitle} | ${siteTitle}`;
 
               document
                 .getElementById("theme-toggle")
-                .addEventListener("click", () => {
-                  if (isDark) {
-                    setToLight();
-                  } else {
-                    setToDark();
-                  }
-                });
+                .addEventListener("click", clickThemeToggle);
+
+              document
+                .getElementById("desktop-theme-toggle")
+                .addEventListener("click", clickThemeToggle);
+
+              function clickThemeToggle() {
+                if (isDark) {
+                  setToLight();
+                } else {
+                  setToDark();
+                }
+              }
 
               function setToLight() {
                 document.documentElement.classList.remove("dark");
                 themeSun.classList.remove("hidden");
                 themeMoon.classList.add("hidden");
+                themeSunDesktop.classList.remove("hidden");
+                themeMoonDesktop.classList.add("hidden");
                 isDark = false;
                 window.localStorage.setItem("darkTheme", false);
               }
@@ -190,6 +229,8 @@ const title = pageTitle === "Home" ? siteTitle : `${pageTitle} | ${siteTitle}`;
                 document.documentElement.classList.add("dark");
                 themeSun.classList.add("hidden");
                 themeMoon.classList.remove("hidden");
+                themeSunDesktop.classList.add("hidden");
+                themeMoonDesktop.classList.remove("hidden");
                 isDark = true;
                 window.localStorage.setItem("darkTheme", true);
               }

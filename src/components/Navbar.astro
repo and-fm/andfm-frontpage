@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import Logo from "../assets/logo.png";
+import ThemeSwitch from "./ThemeSwitch.astro";
 ---
 
 <style>
@@ -70,7 +71,8 @@ import Logo from "../assets/logo.png";
       display: none;
     }
 
-    .hamburger-menu:has(input.checked-nav) + .mobile-nav {
+    #mobile-nav-hamburger:has(#mobile-nav-lbl > #mobile-nav-btn.checked-nav)
+      + .mobile-nav {
       display: flex;
     }
   }
@@ -90,9 +92,15 @@ import Logo from "../assets/logo.png";
     />
     <span class="text-4xl font-bold font-Noord"> and.fm </span>
   </a>
-  <label id="mobile-nav" class="hamburger-menu md:!hidden pt-4">
-    <input id="mobile-nav-btn" type="checkbox" checked />
-  </label>
+  <div
+    id="mobile-nav-hamburger"
+    class="flex flex-row justify-between items-center pt-2"
+  >
+    <label id="mobile-nav-lbl" class="hamburger-menu md:!hidden flex-grow">
+      <input id="mobile-nav-btn" type="checkbox" checked />
+    </label>
+    <ThemeSwitch class="md:!hidden" />
+  </div>
   <div class="mobile-nav flex md:flex-row flex-col gap-4 md:items-center">
     <a href="/about" class="font-medium hover:underline">About</a>
     <a href="/updates" class="font-medium hover:underline">Platform Updates</a>
@@ -116,10 +124,10 @@ import Logo from "../assets/logo.png";
 <script is:inline>
   let isMobileNavOpen = false;
 
-  const mobileNav = document.getElementById("mobile-nav");
+  const mobileNavLbl = document.getElementById("mobile-nav-lbl");
   const mobileNavBtn = document.getElementById("mobile-nav-btn");
 
-  mobileNav.addEventListener("mousedown", (e) => {
+  mobileNavLbl.addEventListener("mousedown", (e) => {
     if (isMobileNavOpen) {
       isMobileNavOpen = false;
       mobileNavBtn.classList.remove("checked-nav");
