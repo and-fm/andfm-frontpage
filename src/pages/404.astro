@@ -1,18 +1,21 @@
 ---
-import MainLayout from "../layouts/mainLayout.astro"
+import Main from "../components/Main.astro";
+import MainLayout from "../layouts/mainLayout.astro";
 ---
+
 <script>
-    const page = window.location.pathname
+  const page = window.location.pathname;
 
-    const textElem = document.getElementById("pathnameText")
-    if (textElem) textElem.textContent = `${page}`
-
-
+  const textElem = document.getElementById("pathnameText");
+  if (textElem) textElem.textContent = `${page}`;
 </script>
-<MainLayout titleProp="404" description="Page not found">
-	<div class="flex flex-col items-center justify-center w-full gap-2 mt-48">
-		<h1 class="text-6xl italic font-bold text-center text-and-primary">Page Not Found</h1>
-		<h1 id="pathnameText" class="text-2xl italic text-purple-400"></h1> <!-- Path that was visited goes here -->
-		<h2 class="mt-10 text-zinc-500">'Not just another distributor' - 🦜</h2>
-	</div>
-</MainLayout>
+<MainLayout pageTitle="404" pageDescription="Page not found">
+  <Main>
+    <div class="mb-12 text-center">
+      <h1 class="mb-4 text-6xl font-bold">Page Not Found</h1>
+      <h2 class="mt-10 text-zinc-800 dark:text-zinc-300">
+        'Not just another distributor' - 🦜
+      </h2>
+    </div>
+  </Main></MainLayout
+>

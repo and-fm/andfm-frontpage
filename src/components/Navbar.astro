@@ -1,101 +1,148 @@
 ---
-import Logo from "../../public/android-icon-144x144.png";
-
 import { Image } from "astro:assets";
+import Logo from "../assets/logo.png";
+import ThemeSwitch from "./ThemeSwitch.astro";
 ---
 
-<div class="w-[100vw] flex items-center justify-center">
-    <nav
-        class="flex flex-row items-center justify-between w-full max-w-6xl p-8 mx-auto md:px-16"
-    >
-        <div class="w-fit">
-            <a href="/" class="w-fit">
-                <Image
-                    src={Logo}
-                    width="128"
-                    height="128"
-                    alt="AND.FM Logo"
-                    loading="eager"
-                    class="object-contain w-12 h-12 md:w-16 md:h-16"
-                />
-            </a>
-        </div>
-        <div
-            class="flex-row items-center justify-end hidden gap-5 text-white lg:gap-10 md:flex"
-        >
-            <a rel="prefetch" class="font-light text-zinc-100" href="/">Home</a>
-            <a rel="prefetch" class="font-light text-zinc-100" href="/blog"
-                >Blog</a
-            >
-            <a rel="prefetch" class="font-light text-zinc-100" href="/faq"
-                >FAQ</a
-            >
-            <a
-                class="p-3 px-5 font-semibold text-center text-black rounded-xl bg-gradient-to-tr from-red-300 via-orange-300 to-yellow-300"
-                target="_blank"
-                href="https://and.fm/login">Login</a
-            >
-        </div>
-        <div class="z-50 block md:hidden">
-            <button
-                onclick="const menu = document.getElementById('mobileMenu'); menu.style.display = menu.style.display === 'none' ? 'block' : 'none'"
-                aria-label="navbarButton"
-                id="hamburgerToggleButton"
-            >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="white"
-                    class="w-6 h-6"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
-                    ></path>
-                </svg>
-            </button>
-        </div>
-    </nav>
-</div>
+<style>
+  :root {
+    --bar-width: 25px;
+    --bar-height: 3px;
+    --hamburger-gap: 6px;
+    --foreground: #333;
+    --background: white;
+    --hamburger-margin: 8px;
+    --animation-timing: 200ms ease-in-out;
+    --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
+  }
 
-<div
-    id="mobileMenu"
-    style="display: none"
-    onclick="const menu = document.getElementById('mobileMenu'); menu.style.display = 'none'"
-    class="absolute
-    p-4 pb-12 top-0 z-20 flex flex-col w-[100vw] gap-4 md:hidden bg-black"
+  .hamburger-menu {
+    --x-width: calc(var(--hamburger-height) * 1.41421356237);
+    display: flex;
+    flex-direction: column;
+    gap: var(--hamburger-gap);
+    cursor: pointer;
+    height: max-content;
+  }
+
+  .hamburger-menu::before,
+  .hamburger-menu::after,
+  .hamburger-menu input {
+    content: "";
+    width: var(--bar-width);
+    height: var(--bar-height);
+    background-color: white;
+    transform-origin: left center;
+    transition:
+      opacity var(--animation-timing),
+      width var(--animation-timing),
+      rotate var(--animation-timing),
+      translate var(--animation-timing),
+      background-color var(--animation-timing);
+  }
+
+  .hamburger-menu input {
+    appearance: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    pointer-events: none;
+  }
+
+  .hamburger-menu:has(input.checked-nav)::before {
+    rotate: 45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / -2);
+  }
+
+  .hamburger-menu:has(input.checked-nav)::after {
+    rotate: -45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / 2);
+  }
+
+  .hamburger-menu input.checked-nav {
+    opacity: 0;
+    width: 0;
+  }
+
+  @media (max-width: 767px) {
+    .mobile-nav {
+      display: none;
+    }
+
+    #header-wrapper:has(
+        #mobile-nav-hamburger > #mobile-nav-lbl > #mobile-nav-btn.checked-nav
+      )
+      + .mobile-nav {
+      display: flex;
+    }
+  }
+</style>
+
+<nav
+  class="container md:px-12 mx-auto flex lg:flex-row flex-col gap-4 md:items-center justify-between"
 >
-    <div class="px-4 pt-4 w-fit">
-        <a href="/" class="w-fit">
-            <Image
-                src={Logo}
-                width="128"
-                height="128"
-                alt="AND.FM Logo"
-                loading="eager"
-                class="object-contain w-12 h-12"
-            />
-        </a>
+  <div
+    id="header-wrapper"
+    class="flex flex-row items-center gap-4 justify-between"
+  >
+    <a href="/">
+      <div class="flex gap-4 items-center">
+        <Image
+          src={Logo}
+          width="128"
+          height="128"
+          alt="and.fm logo"
+          loading="eager"
+          class="object-contain w-12 h-12"
+        />
+        <span class="text-4xl font-bold font-Noord"> and.fm </span>
+      </div>
+    </a>
+    <div
+      id="mobile-nav-hamburger"
+      class="flex flex-row justify-between items-center gap-4"
+    >
+      <label id="mobile-nav-lbl" class="hamburger-menu md:!hidden flex-grow">
+        <input id="mobile-nav-btn" type="checkbox" checked />
+      </label>
+      <ThemeSwitch class="md:!hidden" />
     </div>
-    <div class="flex flex-col pt-5 items-center gap-2 text-white">
-        <a rel="prefetch" class="text-3xl font-semibold text-zinc-100" href="/"
-            >Home</a
-        >
-        <a
-            rel="prefetch"
-            class="text-3xl font-semibold text-zinc-100"
-            href="/blog">Blog</a
-        >
-        <a
-            rel="prefetch"
-            class="text-3xl font-semibold text-zinc-100"
-            href="/faq">FAQ</a
-        >
-        <a
-            class="p-4 px-6 mt-6 text-2xl font-bold text-center text-black rounded-xl bg-gradient-to-tr w-fit from-red-300 via-orange-300 to-yellow-300"
-            href="https://and.fm/login">Login</a
-        >
-    </div>
-</div>
+  </div>
+  <div class="mobile-nav flex md:flex-row flex-col gap-4 md:items-center">
+    <a href="/about" class="font-medium hover:underline">About</a>
+    <a href="/updates" class="font-medium hover:underline">Platform Updates</a>
+    <a
+      href="https://and.fm/waitlist"
+      target="_blank"
+      class="border-2 border-white bg-transparent text-white hover:bg-white hover:text-black px-4 py-2"
+    >
+      Apply for Membership
+    </a>
+    <a
+      href="https://and.fm/login"
+      target="_blank"
+      class="bg-white border-2 border-white text-black hover:bg-gray-100 px-4 py-2"
+    >
+      Member Login
+    </a>
+  </div>
+</nav>
+
+<script is:inline>
+  let isMobileNavOpen = false;
+
+  const mobileNavLbl = document.getElementById("mobile-nav-lbl");
+  const mobileNavBtn = document.getElementById("mobile-nav-btn");
+
+  mobileNavLbl.addEventListener("mousedown", (e) => {
+    if (isMobileNavOpen) {
+      isMobileNavOpen = false;
+      mobileNavBtn.classList.remove("checked-nav");
+    } else {
+      isMobileNavOpen = true;
+      mobileNavBtn.classList.add("checked-nav");
+    }
+  });
+</script>

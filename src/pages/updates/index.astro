@@ -1,0 +1,63 @@
+---
+import Main from "@components/Main.astro";
+import MainLayout from "../../layouts/mainLayout.astro";
+import { getCollection } from "astro:content";
+import ArrowRight from "@components/icons/ArrowRight.astro";
+
+const updateEntries = await getCollection("platform-updates");
+---
+
+<MainLayout
+  pageTitle="Platform Updates"
+  pageDescription="Updates on the and.fm platform and our progress"
+>
+  <Main>
+    <div class="mb-12">
+      <h1 class="mb-16 text-6xl font-bold">Platform Updates</h1>
+      <div class="text-xl flex flex-col gap-2">
+        <div class="space-y-12">
+          {
+            updateEntries
+              .sort((a, b) =>
+                a.data.date.getTime() < b.data.date.getTime() ? 1 : -1
+              )
+              .map((entry) => {
+                const updateDate = entry.data.date;
+                updateDate.setHours(updateDate.getHours() + 5);
+                const niceDate = updateDate.toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                });
+                return (
+                  <article class="group border-t-2 border-black pt-8 first:border-t-0 first:pt-0">
+                    <div class="grid grid-cols-1 md:grid-cols-[1fr,2fr] gap-8">
+                      <div class="space-y-1">
+                        <p class="text-sm">{niceDate}</p>
+                      </div>
+                      <div class="space-y-4">
+                        <h2 class="text-4xl font-bold group-hover:underline">
+                          <a href={`/updates/${entry.slug}`}>
+                            {entry.data.title}
+                          </a>
+                        </h2>
+                        <p class="text-xl text-gray-600 dark:text-gray-200">
+                          {entry.data.description}
+                        </p>
+                        <a
+                          href={`/updates/${entry.slug}`}
+                          class="inline-flex items-center hover:underline gap-2"
+                        >
+                          Read more <ArrowRight />
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })
+          }
+        </div>
+      </div>
+    </div>
+  </Main>
+</MainLayout>

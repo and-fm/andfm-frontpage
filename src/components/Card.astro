@@ -1,0 +1,18 @@
+---
+const { class: className = "bg-blue-200" } = Astro.props;
+---
+
+<style>
+  .card {
+    outline-width: 4px;
+    outline-color: black;
+    outline-style: solid;
+  }
+</style>
+
+<div
+  class:list={[className]}
+  class="card p-6 dark:!outline-0 text-black shadow-[8px_8px_0_0_rgba(0,0,0,1)] dark:shadow-none"
+>
+  <slot />
+</div>

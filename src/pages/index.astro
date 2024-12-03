@@ -1,56 +1,95 @@
 ---
-import CallToAction from "../components/CallToAction.astro";
-import Container from "../components/Container.astro";
+import ThemeSwitch from "@components/ThemeSwitch.astro";
+import Main from "../components/Main.astro";
 import MainLayout from "../layouts/mainLayout.astro";
+import Card from "@components/Card.astro";
 ---
 
-<style>
-    .dottedGrid::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: 0;
-        background-color: black;
-        background-image: radial-gradient(#d4d4d4 1px, transparent 0);
-        background-size: 40px 40px;
-        background-position: -19px 0px;
-        z-index: 1;
-    }
-
-    .dottedGrid::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: 0;
-        /* from red, via orange, to yellow */
-        background: black;
-        background-image: linear-gradient(to top, #ff7979, #ff7f00, #ffe100);
-        mix-blend-mode: multiply;
-        z-index: 2;
-    }
-</style>
-
 <MainLayout
-    pageTitle="Home"
-    pageDescription="The beginnings of an amazing distributor, created by Aaron, Nick and Dave"
+  pageTitle="Home"
+  pageDescription="The best platform to run your music business."
 >
-    <Container>
-        <div class="z-10 mx-auto mt-32">
-
-            <h1 class="text-5xl font-bold tracking-tight text-center text-white">
-                hello, we're <span style="text-shadow: 0.3rem 0.3rem #e07d3b">and.fm</span>
-            </h1>
-
-            <h2 class="pt-5 text-2xl font-light tracking-tight text-center text-white">
-                we're building the world's best artist platform, starting with
-                distribution.
-            </h2>
-
-            <CallToAction />
-        </div>
-    </Container>
+  <Main>
+    <div class="mb-12 text-center">
+      <h1 class="mb-4 text-6xl">
+        <span class="font-bold">and.fm</span>
+        <br />
+        <span class="">
+          <span>everything in one</span>
+        </span>
+      </h1>
+      <p class="mb-8 text-xl">we're building a better music business</p>
+      {
+        /*  <div class="flex justify-center space-x-4">
+        <button class="bg-black text-white hover:bg-gray-800 px-4 py-2">
+          Start Uploading
+        </button>
+        <button
+          class="border-2 border-black bg-transparent text-black hover:bg-black hover:text-white px-4 py-2"
+        >
+          Learn More
+        </button>
+      </div>*/
+      }
+    </div>
+    <div class="grid gap-8 md:grid-cols-3">
+      <Card>
+        <h2 class="mb-2 text-2xl font-bold">what we do</h2>
+        <p>
+          we're not just another distributor. we're developing backbone
+          infrastructure to run your music business.
+        </p>
+      </Card>
+      <Card class="bg-green-300">
+        <h2 class="mb-2 text-2xl font-bold">distribution</h2>
+        <p>
+          get access to efficient digital distribution and see your release on
+          stores within two days. no artificial limits.
+        </p>
+      </Card>
+      <Card class="bg-red-300">
+        <!-- <Play class="mb-4 h-12 w-12" /> -->
+        <h2 class="mb-2 text-2xl font-bold">not for profit</h2>
+        <p>
+          and.fm has no external investment and is owned by our members. excess
+          profit is fully reinvested.
+        </p>
+      </Card>
+    </div>
+    <Card class="mt-12 bg-[#ffe6cf] dark:bg-surface-700 dark:text-white">
+      <h2 class="mb-4 text-3xl font-bold">interested?</h2>
+      <p class="mb-4">
+        we're invite only while we grow. stay updated with <strong
+          >and.fm</strong
+        >'s progress towards open membership.
+      </p>
+      <div class="flex gap-2 md:flex-row flex-col">
+        <a
+          href="https://and.fm/discord"
+          target="_blank"
+          class="bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-surface-100 px-4 py-2 flex-grow text-center"
+          >Join The Discord</a
+        >
+        <a
+          href="https://and.fm/bluesky"
+          target="_blank"
+          class="bg-black text-white dark:bg-white dark:text-black hover:bg-gray-800 dark:hover:bg-surface-100 px-4 py-2 flex-grow text-center"
+          >Follow on Bluesky</a
+        >
+      </div>
+      {
+        /*  <form class="flex gap-2 md:flex-row flex-col">
+        <input
+          class="md:flex-grow border-2 border-black bg-transparent px-4 py-2"
+          placeholder="Enter your email"
+          type="email"
+          disabled
+        />
+        <button disabled class="bg-black text-white hover:bg-gray-800 px-4 py-2"
+          >Subscribe</button
+        >
+      </form> */
+      }
+    </Card>
+  </Main>
 </MainLayout>

@@ -1,0 +1,22 @@
+---
+import Main from "@components/Main.astro";
+import Prose from "@components/Prose.astro";
+import MainLayout from "../layouts/mainLayout.astro";
+import { Content as FAQContent } from "../md/faq.md";
+---
+
+<MainLayout
+  pageTitle="FAQ"
+  pageDescription="Here are some frequently asked questions answered by the AND team!"
+>
+  <Main>
+    <div class="mb-12">
+      <h1 class="mb-12 text-4xl font-extrabold">Frequently Asked Questions</h1>
+      <div class="flex flex-col gap-2">
+        <Prose class="prose-h2:m-0">
+          <FAQContent />
+        </Prose>
+      </div>
+    </div>
+  </Main>
+</MainLayout>

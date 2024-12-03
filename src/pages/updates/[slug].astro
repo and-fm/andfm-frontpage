@@ -1,0 +1,70 @@
+---
+import { getCollection } from "astro:content";
+import MainLayout from "../../layouts/mainLayout.astro";
+import Prose from "../../components/Prose.astro";
+import Main from "../../components/Main.astro";
+import ImageRenderer from "../../components/ImageRenderer.astro";
+import ArrowLeft from "@components/icons/ArrowLeft.astro";
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+  const updateEntries = await getCollection("platform-updates");
+  return updateEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+// 2. For your template, you can get the entry directly from the prop
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+const updateDate = entry.data.date;
+updateDate.setHours(updateDate.getHours() + 5);
+---
+
+<MainLayout
+  pageTitle={`${entry.data.title} | Platform Updates`}
+  pageDescription={entry.data.description}
+>
+  <Main>
+    <div class="flex flex-col gap-8">
+      <a
+        href="/updates"
+        class="inline-flex items-center hover:underline gap-2 font-bold"
+      >
+        <ArrowLeft /> All Updates
+      </a>
+      <address class="flex items-center not-italic">
+        <div class="items-center inline-flex gap-5">
+          <ImageRenderer
+            width="64px"
+            height="64px"
+            class="w-16 h-16 rounded-full"
+            alt={entry.data.author}
+            src={entry.data.authorAvatar}
+          />
+          <div>
+            <p class="text-xl font-bold">{entry.data.author}</p>
+            <p class="font-light">{entry.data.authorSub}</p>
+            <p class="font-light">
+              <time
+                datetime={updateDate.toString()}
+                title={updateDate.toString()}
+                >{
+                  updateDate.toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })
+                }
+              </time>
+            </p>
+          </div>
+        </div>
+      </address>
+      <h1 class="text-4xl font-bold">{entry.data.title}</h1>
+      <Prose>
+        <Content />
+      </Prose>
+    </div>
+  </Main>
+</MainLayout>

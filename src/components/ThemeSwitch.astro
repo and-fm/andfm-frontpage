@@ -1,0 +1,25 @@
+---
+import Moon from "./icons/Moon.astro";
+import Sun from "./icons/Sun.astro";
+
+interface Props {
+  class?: string;
+  id?: string;
+}
+const { class: className = "", id: idName = "theme-toggle" }: Props =
+  Astro.props;
+---
+
+<button
+  class:list={[
+    "theme-toggle flex items-center w-max p-2.5 bg-surface-800 hover:bg-surface-700 rounded-full",
+    className,
+  ]}
+  id={idName}
+  title="Toggles light & dark"
+  aria-label="auto"
+  aria-live="polite"
+>
+  <Sun size="1.3em" class="theme-sun" />
+  <Moon size="1.3em" class="theme-moon hidden" />
+</button>

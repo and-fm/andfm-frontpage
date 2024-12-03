@@ -1,0 +1,70 @@
+---
+import ImageRenderer from "@components/ImageRenderer.astro";
+import Main from "../components/Main.astro";
+import MainLayout from "../layouts/mainLayout.astro";
+import NickProfile from "@assets/team/nick-preston.jpeg";
+import AaronProfile from "@assets/team/aaron-demolder.jpeg";
+import TeamMember from "@components/TeamMember.astro";
+---
+
+<MainLayout pageTitle="About" pageDescription="About the company and our team">
+  <Main>
+    <div class="mb-12">
+      <h1 class="mb-4 text-6xl font-bold">hello, we're and.fm</h1>
+      <div class="text-xl flex flex-col gap-2">
+        <p>
+          we're building the world's best platform to run your music business.
+        </p>
+        <p>
+          and.fm is the world's only non-profit offering music distribution.
+        </p>
+        <br />
+        <h2 class="mb-4 text-4xl font-bold">our focus</h2>
+        <ul class="list-disc ml-6 max-w-[600px]">
+          <li>
+            <strong>artist and label services:</strong> to develop a comprehensive,
+            modern, and automated suite of services with access to competitive licenses.
+            a single toolkit to run your business.
+          </li>
+          <li>
+            <strong>rightsholder value:</strong> to offer a multi-faceted approach
+            to maximize value of copyrights for rightsholders, ensuring fair and
+            transparent revenue.
+          </li>
+          <li>
+            <strong>efficiency:</strong> to deliver collective quality services to
+            members that remove the unnecessary involvement of third parties, enabling
+            independents to thrive.
+          </li>
+        </ul>
+        <br />
+        <h2 class="mb-4 text-4xl font-bold">our team</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <TeamMember
+            name="Aaron Demolder EngD."
+            title="Co-founder, Director"
+            about="digital media engineering & deep tech researcher, label manager"
+            profileImg={AaronProfile}
+          />
+
+          <TeamMember
+            name="Nick Preston"
+            title="Co-founder, Director"
+            about="full stack software developer, label manager"
+            profileImg={NickProfile}
+          />
+        </div>
+        <br />
+        <p>
+          we're invite only while we grow, join our <a
+            class="underline"
+            target="_blank"
+            href="https://and.fm/waitlist">waitlist</a
+          > & <a class="underline" target="_blank" href="https://and.fm/discord"
+            >discord</a
+          > for updates first.
+        </p>
+      </div>
+    </div>
+  </Main>
+</MainLayout>

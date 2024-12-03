@@ -1,105 +1,245 @@
 ---
-import Footer from "../components/Footer.astro";
-import Navbar from '../components/Navbar.astro';
+import Footer from "@components/Footer.astro";
+import Navbar from "@components/Navbar.astro";
+import ThemeSwitch from "@components/ThemeSwitch.astro";
 
 interface Props {
-	pageTitle: string;
-	pageDescription: string;
+  pageTitle: string;
+  pageDescription: string;
+  class?: string;
 }
 
-const {pageTitle, pageDescription}: Props = Astro.props;
+const {
+  pageTitle,
+  pageDescription,
+  class: className = "",
+}: Props = Astro.props;
 
 const siteTitle = "and.fm";
-const title = pageTitle === "Home" ? siteTitle : `${pageTitle} | ${siteTitle}`
+const title = pageTitle === "Home" ? siteTitle : `${pageTitle} | ${siteTitle}`;
 ---
 
-<html lang="en" class="bg-and-black">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-        <link rel="manifest" href="/manifest.json">
-        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-		<meta name="msapplication-TileColor" content="#232323">
-		<meta name="theme-color" content="#232323">
-        
-        <!-- Meta Tags Generated with https://metatags.io -->
-        <!-- Primary Meta Tags -->
-        <title>{title}</title>
-        <meta name="title" content={title} />
-        <meta name="description" content={pageDescription} />
+<html lang="en" class="bg-black">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/android-icon-192x192.png"
+    />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+    <meta name="msapplication-TileColor" content="#232323" />
+    <meta name="theme-color" content="#232323" />
 
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://and.fm" />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={pageDescription} />
-        <!-- <meta property="og:image" content="https://metatags.io/images/meta-tags.png" /> -->
+    <!-- Meta Tags Generated with https://metatags.io -->
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={pageDescription} />
 
-        <!-- Twitter -->
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://and.fm" />
-        <meta property="twitter:title" content={title} />
-        <meta property="twitter:description" content={pageDescription} />
-        <!-- <meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" /> -->
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.and.fm" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content="https://www.and.fm/logo-small.png" />
 
-        <style is:global>
-            *::-webkit-scrollbar-track {
-                border-radius: 5px;
-                margin-right: 30px;
-                background-color: #232323;
-            }
-            
-            *::-webkit-scrollbar {
-             height: 0.5rem;
-             width: 0.5rem;
-            }    
-            /*Scroll bar nav*/
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://www.and.fm" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={pageDescription} />
+    <meta
+      property="twitter:image"
+      content="https://www.and.fm/logo-small.png"
+    />
 
-            *::-webkit-scrollbar-track:hover {
-            background-color: #232323;
-            }
+    <!-- Custom Fonts -->
+    <link
+      rel="preload"
+      href="/fonts/Noord-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Noord-Regular.woff"
+      as="font"
+      type="font/woff"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Noord-Regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Noord-Regular.otf"
+      as="font"
+      type="font/otf"
+      crossorigin
+    />
 
-            *::-webkit-scrollbar-track:active {
-            background-color: #323232;
-            }
-            
-            *::-webkit-scrollbar-thumb {
-            border-radius: 5px;
-            background-color: #4c4c4c;
-            }
-            
-            *::-webkit-scrollbar-thumb:hover {
-            background-color: #5f5f5f;
-            }
+    <style is:global>
+      @font-face {
+        font-family: "Noord";
+        src:
+          url("/fonts/Noord-Regular.woff2") format("woff2"),
+          url("/fonts/Noord-Regular.woff") format("woff"),
+          url("/fonts/Noord-Regular.ttf") format("truetype"),
+          url("/fonts/Noord-Regular.otf") format("opentype");
+      }
 
-            *::-webkit-scrollbar-thumb:active {
-            background-color: #5f5f5f;
-            } 
-        </style>        
-	</head>
-    <!-- keep overflow-x-clip otherwise the navbar (which is of width 100vw) will cause the page to have a horizontal scrollbar -->
-	<body class="flex flex-col justify-between min-h-screen overflow-x-clip">
-		<div class="w-full h-full">
+      .body-texture {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='noise' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='8' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.10'/%3E%3C/svg%3E");
+      }
+
+      @media (max-width: 767px) {
+        .theme-switch {
+          @apply px-4 py-9;
+        }
+
+        .desktop-theme-toggle {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-[#fffcf4] dark:bg-[#242424] dark:!bg-none body-texture"
+    class:list={[className]}
+  >
+    <div style="display: contents">
+      <div class="flex flex-col gap-12 justify-between min-h-screen text-black">
+        <div class="flex flex-col gap-12">
+          <header
+            class="sticky top-0 flex flex-row md:items-center bg-black text-white p-4"
+          >
             <Navbar />
-            <slot />
+            <span class="desktop-theme-toggle"
+              ><ThemeSwitch id="desktop-theme-toggle" /></span
+            >
+            <script is:inline>
+              let isDark = false;
+              const themeSun = document.querySelector(
+                "#theme-toggle .theme-sun"
+              );
+              const themeSunDesktop = document.querySelector(
+                "#desktop-theme-toggle .theme-sun"
+              );
+              const themeMoon = document.querySelector(
+                "#theme-toggle .theme-moon"
+              );
+              const themeMoonDesktop = document.querySelector(
+                "#desktop-theme-toggle .theme-moon"
+              );
+
+              const darkTheme = window.localStorage.getItem("darkTheme");
+
+              if (darkTheme === "true") {
+                setToDark();
+              } else {
+                setToLight();
+              }
+
+              // set to system mode on load if not set in localStorage
+              if (darkTheme === undefined || darkTheme === null) {
+                if (
+                  window.matchMedia &&
+                  window.matchMedia("(prefers-color-scheme: dark)").matches
+                ) {
+                  setToDark();
+                }
+              }
+
+              // sync with system changes
+              window
+                .matchMedia("(prefers-color-scheme: dark)")
+                .addEventListener("change", ({ matches: isDark }) => {
+                  isDark ? setToDark() : setToLight();
+                });
+
+              document
+                .getElementById("theme-toggle")
+                .addEventListener("click", clickThemeToggle);
+
+              document
+                .getElementById("desktop-theme-toggle")
+                .addEventListener("click", clickThemeToggle);
+
+              function clickThemeToggle() {
+                if (isDark) {
+                  setToLight();
+                } else {
+                  setToDark();
+                }
+              }
+
+              function setToLight() {
+                document.documentElement.classList.remove("dark");
+                themeSun.classList.remove("hidden");
+                themeMoon.classList.add("hidden");
+                themeSunDesktop.classList.remove("hidden");
+                themeMoonDesktop.classList.add("hidden");
+                isDark = false;
+                window.localStorage.setItem("darkTheme", false);
+              }
+
+              function setToDark() {
+                document.documentElement.classList.add("dark");
+                themeSun.classList.add("hidden");
+                themeMoon.classList.remove("hidden");
+                themeSunDesktop.classList.add("hidden");
+                themeMoonDesktop.classList.remove("hidden");
+                isDark = true;
+                window.localStorage.setItem("darkTheme", true);
+              }
+            </script>
+          </header>
+          <slot />
         </div>
-        
-        <!-- this footer is placed below the top stuff so that the footer
-            will always be at either the bottom of the screen or at the bottom of the whole page if it's bigger
-            than the screen. -->
-        <Footer /> 
-    </body>
+        <Footer />
+      </div>
+    </div>
+  </body>
 </html>
