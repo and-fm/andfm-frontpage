@@ -1,0 +1,65 @@
+---
+import Main from "@components/Main.astro";
+import Prose from "@components/Prose.astro";
+import MainLayout from "src/layouts/mainLayout.astro";
+---
+
+<MainLayout
+  pageTitle="Privacy Policy | and.fm"
+  pageDescription="and.fm's Privacy Policy"
+>
+  <Main>
+    <Prose>
+      <h1>Privacy Policy</h1>
+      <p class="text-sm dark:text-gray-200 text-gray-600 mt-[-1.2rem]">
+        Last Updated: 12/4/2024
+      </p>
+      <div>
+        <div>
+          <h3>1. Data Collection</h3>
+          <p>We prioritize your privacy and minimize data collection.</p>
+          <p class="mt-[-1rem]">Our service does not collect:</p><ul
+            class="list-disc"
+          >
+            <li>Cookies or tracking</li><li>Search history</li>
+          </ul>
+          <p>Our service does collect:</p><ul class="list-disc">
+            <li>Your email address</li>
+          </ul>
+        </div><div>
+          <h3>2. External Services</h3><p>For member login:</p><ul
+            class="list-disc"
+          >
+            <li>You will be directed to an external login site</li><li>
+              External sites may have their own privacy policies
+            </li><li>
+              We recommend reviewing privacy policies of external sites
+            </li><li>
+              We are not responsible for external sites' data practices
+            </li>
+          </ul>
+        </div><div>
+          <h3>3. Your Privacy Rights</h3><p>
+            As we don't collect most personal data:
+          </p><ul class="list-disc">
+            <li>There is no personal data to access or delete</li><li>
+              No opt-out is necessary as we don't track users
+            </li><li>You can use our service completely anonymously</li><li>
+              No data is shared with third parties
+            </li>
+          </ul>
+          <p>When we collect your email address:</p>
+          <li>
+            It is used solely to evaluate demand for membership and individual
+            membership requests.
+          </li><li>
+            It is only used to contact you about your inquiry for and.fm
+            membership.
+          </li><li>
+            It may be removed upon request by contacting us on Discord.
+          </li>
+        </div>
+      </div>
+    </Prose>
+  </Main>
+</MainLayout>
