@@ -5,13 +5,16 @@ import { defineConfig } from "astro/config";
 import compress from "astro-compress";
 import critters from "astro-critters";
 
+import sitemap from "@astrojs/sitemap";
+
 // https://astro.build/config
 export default defineConfig({
+  site: "https://www.and.fm",
   devToolbar: {
     enabled: false,
   },
   build: {
     inlineStylesheets: "always",
   },
-  integrations: [tailwind(), prefetch(), critters(), compress()],
+  integrations: [tailwind(), prefetch(), critters(), compress(), sitemap()],
 });
