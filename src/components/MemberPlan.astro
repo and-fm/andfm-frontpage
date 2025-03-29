@@ -1,0 +1,53 @@
+---
+import type { StringSchema } from "node_modules/astro/dist/env/schema";
+
+interface Props {
+  name: string;
+  description: string;
+  price: string;
+  actionButtonName: string;
+  bodyClass?: string;
+  priceClass?: string;
+  featureClass?: string;
+}
+
+const {
+  name,
+  description,
+  price,
+  actionButtonName,
+  bodyClass = "",
+  priceClass = "",
+  featureClass = "",
+}: Props = Astro.props;
+---
+
+<div
+  class:list={[
+    "flex flex-col gap-8 justify-between border-4 border-black p-6 shadow-[8px_8px_0_0_rgba(0,0,0,1)] w-full max-w-[24rem]",
+    bodyClass,
+  ]}
+>
+  <div class="flex flex-col gap-1">
+    <h2 class="text-3xl font-bold self-center">{name}</h2>
+    <p class="text-gray-800 self-center">
+      {description}
+    </p>
+  </div>
+  <h3
+    class:list={[
+      "text-2xl font-bold p-2 text-white flex justify-center w-1/2 self-center shadow-[8px_8px_0_0_rgba(0,0,0,1)]",
+      priceClass,
+    ]}
+  >
+    {price}
+  </h3>
+  <button class="bg-black text-white hover:bg-gray-700 px-4 py-2">
+    {actionButtonName}
+  </button>
+  <div class:list={["p-8 bg-blue-100", featureClass]}>
+    <ul class="flex flex-col gap-2">
+      <slot />
+    </ul>
+  </div>
+</div>
