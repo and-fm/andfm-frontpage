@@ -38,18 +38,21 @@ import MemberPlan from "@components/MemberPlan.astro";
 
         <MemberPlan
           name="premium"
-          description="an all you need, no limits, no bs membership"
-          price="custom"
+          description="for those who need more"
+          price="% of royalties"
           actionButtonName="contact us"
           bodyClass="bg-green-300"
           priceClass="bg-green-800"
           featureClass="bg-green-100"
         >
           <li class="flex gap-2 items-center">
-            <CircleCheck />everything in basic plus...
+            <CircleCheck />everything in basic...
           </li>
           <li class="flex gap-2 items-center">
             <CircleCheck />priority support
+          </li>
+          <li class="flex gap-2 items-center">
+            <CircleCheck />access to beta features
           </li>
         </MemberPlan>
       </div>
