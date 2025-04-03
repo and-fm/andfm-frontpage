@@ -186,14 +186,14 @@ const title = pageTitle === "Home" ? siteTitle : `${pageTitle} | ${siteTitle}`;
               }
 
               // set to system mode on load if not set in localStorage
-              if (darkTheme === undefined || darkTheme === null) {
-                if (
-                  window.matchMedia &&
-                  window.matchMedia("(prefers-color-scheme: dark)").matches
-                ) {
-                  setToDark();
-                }
-              }
+              // if (darkTheme === undefined || darkTheme === null) {
+              //   if (
+              //     window.matchMedia &&
+              //     window.matchMedia("(prefers-color-scheme: dark)").matches
+              //   ) {
+              //     setToDark();
+              //   }
+              // }
 
               // sync with system changes
               window
